@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/InfoNameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="(InfoName)"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/InfoDescText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="(InfoDesc)"
+        android:textSize="18sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="8dp" />
+</LinearLayout>

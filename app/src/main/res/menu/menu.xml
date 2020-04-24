@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_addEquipment"
+        android:icon="@drawable/armoricon2"
+        android:title="Add Equipment" />
+    <item
+        android:id="@+id/action_addWeapon"
+        android:icon="@drawable/weaponicon2"
+        android:title="Add Weapon" />
+    <item
+        android:id="@+id/action_addMagic"
+        android:icon="@drawable/magicicon2"
+        android:title="Add Magic" />
+    <item
+        android:id="@+id/action_addLevel"
+        android:icon="@drawable/levelupicon"
+        android:title="Level up" />
+</menu>

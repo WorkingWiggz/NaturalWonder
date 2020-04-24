@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#1a305e</color>
+    <color name="colorPrimaryDark">#242945</color>
+    <color name="colorAccent">#4749d6</color>
+
+    <color name="DarkMode_Text"> #c9c9c9 </color>
+    <color name="DarkMode_Back"> #363636 </color>
+    <color name="DarkMode_ButtonBack">#000000</color>
+    <color name="LightMode_Text"> #000000 </color>
+    <color name="LightMode_Back"> #d4d4d4  </color>
+    <color name="LightMode_ButtonBack"> #fafafa </color>
+
+
+
+
+
+
 </resources>

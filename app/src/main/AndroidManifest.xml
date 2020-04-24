@@ -2,13 +2,49 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.thekidd.naturalwonder">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:allowBackup="false"
+        android:icon="@mipmap/blackicon_launcher"
+        android:label="Natural Wonder"
+        android:roundIcon="@mipmap/blackicon_launcher"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/MainAppTheme.Light"
+        android:screenOrientation="portrait">
+
+        <activity android:name=".Rolling.RollingActivity"/>
+        <activity android:name=".CharacterSheets.CharacterSheetsEditor" />
+        <activity android:name=".CharacterSheets.SetupCharacter" />
+        <activity android:name=".ErrorPage" />
+        <activity android:name=".SessionNotes.SessionEditor" />
+        <activity android:name=".LookUp.ItemActivities.AbilityScores" />
+        <activity android:name=".LookUp.ItemActivities.Classes" />
+        <activity android:name=".LookUp.ItemActivities.Conditions" />
+        <activity android:name=".LookUp.ItemActivities.DamageTypes" />
+        <activity android:name=".LookUp.ItemActivities.Equipment" />
+        <activity android:name=".LookUp.ItemActivities.EquipmentCategories" />
+        <activity android:name=".LookUp.ItemActivities.Features" />
+        <activity android:name=".LookUp.ItemActivities.Languages" />
+        <activity android:name=".LookUp.ItemActivities.MagicSchools" />
+        <activity android:name=".LookUp.ItemActivities.Monsters" />
+        <activity android:name=".LookUp.ItemActivities.Proficiencies" />
+        <activity android:name=".LookUp.ItemActivities.Races" />
+        <activity android:name=".LookUp.ItemActivities.Skills" />
+        <activity android:name=".LookUp.ItemActivities.SpellCasting" />
+        <activity android:name=".LookUp.ItemActivities.Spells" />
+        <activity android:name=".LookUp.ItemActivities.StartingEquipment" />
+        <activity android:name=".LookUp.ItemActivities.Subclasses" />
+        <activity android:name=".LookUp.ItemActivities.Subraces" />
+        <activity android:name=".LookUp.ItemActivities.Traits" />
+        <activity android:name=".LookUp.ItemActivities.WeaponProperties" />
+        <activity android:name=".Settings.SettingsActivity" />
+        <activity android:name=".Developer.DeveloperActivity" />
+        <activity android:name=".CharacterSheets.SheetsActivity" />
+        <activity android:name=".SessionNotes.NotesActivity" />
+        <activity android:name=".LookUp.LookingUpActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,6 +52,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".BaseNWActivity" />
     </application>
 
 </manifest>

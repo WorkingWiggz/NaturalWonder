@@ -8,4 +8,40 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="MainAppTheme" parent="AppTheme.NoActionBar">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+
+
+    <style name="MainAppTheme.Light" parent="@style/MainAppTheme">
+        <item name="android:windowBackground">@color/LightMode_Back</item>
+        <item name="colorButtonNormal">@color/LightMode_ButtonBack</item>
+        <item name="android:textColor">@color/LightMode_Text</item>
+        <item name="android:textColorPrimary">@color/LightMode_Text</item>
+        <item name="android:textColorSecondary">@color/LightMode_Text</item>
+        <item name="android:textColorTertiary">@color/LightMode_Text</item>
+    </style>
+
+    <style name="MainAppTheme.Dark" parent="@style/MainAppTheme">
+        <item name="android:windowBackground">@color/DarkMode_Back</item>
+        <item name="colorButtonNormal">@color/DarkMode_ButtonBack</item>
+        <item name="android:textColor">@color/DarkMode_Text</item>
+        <item name="android:textColorPrimary">@color/DarkMode_Text</item>
+        <item name="android:textColorSecondary">@color/DarkMode_Text</item>
+        <item name="android:textColorTertiary">@color/DarkMode_Text</item>
+    </style>
+
+
+    
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>
