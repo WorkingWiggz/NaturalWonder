@@ -25,8 +25,6 @@ public class DeveloperActivity extends BaseNWActivity {
         setContentView(R.layout.activity_developer);
         BrandLink = findViewById(R.id.BrandText);
         BrandLink.setMovementMethod(LinkMovementMethod.getInstance());
-        String a = "Working Wiggz prod.";
-        BrandLink.setText(a);
         MenuButt = findViewById(R.id.MenuButt);
         VersionText = findViewById(R.id.VersionNum);
         VersionNumber = "0.1";

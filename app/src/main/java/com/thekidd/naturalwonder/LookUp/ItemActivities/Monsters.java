@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -28,7 +29,8 @@ public class Monsters extends BasicItemActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monster);
-
+        Button MenuButt = findViewById(R.id.MenuButt);
+        MenuButtonHandle(MenuButt);
         NameText = findViewById(R.id.DescText);
         SizeText = findViewById(R.id.SizeText);
         TypeText = findViewById(R.id.TypeText);

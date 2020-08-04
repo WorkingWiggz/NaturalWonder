@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -38,7 +39,6 @@ public class Classes extends BasicItemActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classes);
-
         ClassText = findViewById(R.id.classText);
         HitDice = findViewById(R.id.hitDice);
         ProfClassText = findViewById(R.id.profClassText);
@@ -54,17 +54,15 @@ public class Classes extends BasicItemActivity {
         SubclassList = findViewById(R.id.SubclassList);
         SavingThrowList = findViewById(R.id.SavingThrowList);
         StartingEquipList = findViewById(R.id.StartingEquipList);
+        Button MenuButt = findViewById(R.id.MenuButt);
+        MenuButtonHandle(MenuButt);
 
         try {
-
             String se = ItemData.getJSONObject("starting_equipment").getString("class");
             ArrayList<String> StartEq = new ArrayList<>();
             StartEq.add(se);
             CustomListAdapter adapSE = new CustomListAdapter(this,StartEq);
             StartingEquipList.setAdapter(adapSE);
-
-
-
 
             if(ItemData.has("spellcasting")){
                 String g ="Spells Usable by class";

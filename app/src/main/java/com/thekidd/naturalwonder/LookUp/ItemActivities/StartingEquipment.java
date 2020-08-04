@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -19,8 +20,8 @@ public class StartingEquipment extends BasicItemActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_starting_equipment);
-
-
+        Button MenuButt = findViewById(R.id.MenuButt);
+        MenuButtonHandle(MenuButt);
         TextView CN = findViewById(R.id.CNText);
         ListView SE = findViewById(R.id.SEList);
         try {

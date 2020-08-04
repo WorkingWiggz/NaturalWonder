@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.thekidd.naturalwonder.MainActivity;
@@ -22,10 +23,10 @@ public class Equipment extends BasicItemActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_equipment);
-
+        Button MenuButt = findViewById(R.id.MenuButt);
+        MenuButtonHandle(MenuButt);
         TitleName = findViewById(R.id.TitleName);
         EqCat = findViewById(R.id.EqCat);
-        GearCat = findViewById(R.id.GearCat);
         Cost = findViewById(R.id.Cost);
         Weight = findViewById(R.id.Weight);
         Desc = findViewById(R.id.Desc);
@@ -33,15 +34,13 @@ public class Equipment extends BasicItemActivity {
         try{
         String a = ItemData.getString("name");
         TitleName.setText(a);
-        String b = ItemData.getString("equipment_category");
+        String b = "(" + ItemData.getJSONObject("equipment_category").getString("name")+")";
         EqCat.setText(b);
             ArrayList<String> keys = new ArrayList<>();
             Iterator<String> ItemKeys =ItemData.keys();
          while(ItemKeys.hasNext()){
              keys.add(ItemKeys.next());
          }
-        String c = ItemData.getString(keys.get(4));
-        GearCat.setText(c);
         String d = "Cost: "+ ItemData.getJSONObject("cost").getString("quantity") + " "+ ItemData.getJSONObject("cost").getString("unit");
         Cost.setText(d);
 

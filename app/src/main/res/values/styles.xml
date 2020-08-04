@@ -21,27 +21,59 @@
 
 
     <style name="MainAppTheme.Light" parent="@style/MainAppTheme">
-        <item name="android:windowBackground">@color/LightMode_Back</item>
-        <item name="colorButtonNormal">@color/LightMode_ButtonBack</item>
-        <item name="android:textColor">@color/LightMode_Text</item>
-        <item name="android:textColorPrimary">@color/LightMode_Text</item>
-        <item name="android:textColorSecondary">@color/LightMode_Text</item>
-        <item name="android:textColorTertiary">@color/LightMode_Text</item>
+
+        <item name="itemtext"> @color/LightMode_ButtonBack </item>
+        <item name="itemtextback"> @color/LightMode_Text </item>
+
+        <item name="itemicontint"> @color/LightMode_Back </item>
+        <item name="itemiconback"> @color/LightMode_ButtonBack </item>
+
+        <item name="buttonimagetint"> @color/LightMode_ButtonBack </item>
+        <item name="buttonimageback"> @color/LightMode_Back </item>
+
+        <item name="TextColor">@color/LightMode_Text</item>
+        <item name="AppBackground">@color/LightMode_ButtonBack</item>
+        <item name="AppAccent">@color/LightMode_Back</item>
+
+        <item name="android:windowBackground">?attr/AppBackground</item>
+        <item name="colorButtonNormal">?attr/AppAccent</item>
+        <item name="android:textColor">?attr/TextColor</item>
+        <item name="android:textColorPrimary">?attr/TextColor</item>
+        <item name="android:textColorSecondary">?attr/TextColor</item>
+        <item name="android:textColorTertiary">?attr/TextColor</item>
     </style>
 
     <style name="MainAppTheme.Dark" parent="@style/MainAppTheme">
-        <item name="android:windowBackground">@color/DarkMode_Back</item>
-        <item name="colorButtonNormal">@color/DarkMode_ButtonBack</item>
-        <item name="android:textColor">@color/DarkMode_Text</item>
-        <item name="android:textColorPrimary">@color/DarkMode_Text</item>
-        <item name="android:textColorSecondary">@color/DarkMode_Text</item>
-        <item name="android:textColorTertiary">@color/DarkMode_Text</item>
+        <item name="itemtext"> @color/DarkMode_ButtonBack </item>
+        <item name="itemtextback"> @color/DarkMode_Text </item>
+
+        <item name="itemicontint"> @color/LightMode_ButtonBack </item>
+        <item name="itemiconback">  @color/DarkMode_Back </item>
+
+        <item name="buttonimagetint"> @color/LightMode_ButtonBack </item>
+        <item name="buttonimageback"> @color/DarkMode_Back </item>
+
+        <item name="TextColor">@color/DarkMode_Text</item>
+        <item name="AppBackground">@color/DarkMode_ButtonBack</item>
+        <item name="AppAccent">@color/DarkMode_Back</item>
+
+        <item name="android:windowBackground">?attr/AppBackground</item>
+        <item name="colorButtonNormal">?attr/AppAccent</item>
+        <item name="android:textColor">?attr/TextColor</item>
+        <item name="android:textColorPrimary">?attr/TextColor</item>
+        <item name="android:textColorSecondary">?attr/TextColor</item>
+        <item name="android:textColorTertiary">?attr/TextColor</item>
     </style>
 
 
-    
+
+
+
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
 
 </resources>

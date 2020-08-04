@@ -12,8 +12,8 @@
         android:id="@+id/action_addMagic"
         android:icon="@drawable/magicicon2"
         android:title="Add Magic" />
-    <item
+   <!-- <item
         android:id="@+id/action_addLevel"
         android:icon="@drawable/levelupicon"
-        android:title="Level up" />
+        android:title="Level up" /> -->
 </menu>

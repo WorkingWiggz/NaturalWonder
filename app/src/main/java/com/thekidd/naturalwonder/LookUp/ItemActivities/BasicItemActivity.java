@@ -1,7 +1,5 @@
 package com.thekidd.naturalwonder.LookUp.ItemActivities;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,36 +16,51 @@ import com.android.volley.toolbox.Volley;
 import com.thekidd.naturalwonder.BaseNWActivity;
 import com.thekidd.naturalwonder.ErrorPage;
 import com.thekidd.naturalwonder.LookUp.CustomListAdapter;
-import com.thekidd.naturalwonder.LookUp.LookingUpActivity;
-
+import com.thekidd.naturalwonder.MainActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 
 public class BasicItemActivity extends BaseNWActivity {
     JSONObject ItemData;
-    String ItemString;
+    ArrayList<String> JSONData = new ArrayList<>();
+    ArrayList<String> ActivityList = new ArrayList();
+    int CurrentPageCount;
+    Class<?> PreviousActivity;
     JSONObject hold;
-    ArrayList<String> TopMenu = new ArrayList<String>();
+    ArrayList<String> TopMenu = new ArrayList<>();
     RequestQueue queue;
     String BaseURL = "https://dnd5eapi.co";
     Button BackButt;
 
     protected void onCreate(Bundle savedInstanceState) {
-
         queue = Volley.newRequestQueue(this);
         super.onCreate(savedInstanceState);
         try {
-            ItemData = new JSONObject(getIntent().getStringExtra("ItemData"));
-            ItemString = ItemData.toString();
-        } catch (JSONException e) {
-            e.printStackTrace();
+            if(getIntent().getBooleanExtra("Init",false)){
+                JSONData.clear();
+                ActivityList.clear();
+                ItemData = new JSONObject(getIntent().getStringExtra("ItemData"));
+                ActivityList.add(getIntent().getStringExtra("PreviousActivity"));
+                PreviousActivity = Class.forName(getIntent().getStringExtra("PreviousActivity"));
+            } else {
+                ConvertExtras();
+                ItemData = new JSONObject(JSONData.get(CurrentPageCount));
+                PreviousActivity = Class.forName(ActivityList.get(CurrentPageCount));
+            }
+        } catch (Exception e) {
+            ErrorHandle(e,getApplicationContext());
         }
     }
+
+
+
     public void GetItem(final String url){
         final String s = BaseURL + url;
 
@@ -82,7 +95,7 @@ public class BasicItemActivity extends BaseNWActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                ErrorHandle(error,getApplicationContext());
             }
         });
 
@@ -168,10 +181,10 @@ public class BasicItemActivity extends BaseNWActivity {
                 break;
         }
         ItemType.putExtra("ItemData",hold.toString());
-        startActivity(ItemType);
+        StartActivity(ItemType);
     }
 
-   public void  ShowError(){
+   public void  ShowError(Exception e){
        Intent error = new Intent(this, ErrorPage.class);
        startActivity(error);
    }
@@ -182,7 +195,7 @@ public class BasicItemActivity extends BaseNWActivity {
            GetItem(c.getString("url"));
        } catch (JSONException e) {
            e.printStackTrace();
-           ShowError();
+           ShowError(e);
        }
    }
 
@@ -204,17 +217,92 @@ public class BasicItemActivity extends BaseNWActivity {
        } catch (JSONException e) {
            e.printStackTrace();
            ErrorHandle(e,this);
-   }
+       }
    }
 
    public void SortBackButt(final Button backButt){
         backButt.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               Intent i = new Intent(backButt.getContext(), LookingUpActivity.class);
-               startActivity(i);
+                GotoPreviousActivity();
            }
        });
    }
+
+   public void GotoPreviousActivity(){
+       Intent PrevAct = new Intent(this, PreviousActivity);
+       PrevAct.putExtra("IsAPreviousActivity",true);
+       StartActivity(PrevAct);
+    }
+
+    public void StartActivity(Intent PassedIntent){
+        if (PassedIntent.getBooleanExtra("IsAPreviousActivity",false)) {
+            GoingBack(PassedIntent);
+        } else {
+            GoingForward(PassedIntent);
+        }
+        startActivity(PassedIntent);
+    }
+
+    private void GoingBack(Intent passedIntent) {
+        if(ActivityList.size() >= 1){
+            ActivityList.remove(CurrentPageCount);
+        }
+        if(JSONData.size() >= 1){
+            JSONData.remove(CurrentPageCount);
+        }
+
+
+        CurrentPageCount--;
+        String[] a = JSONData.toArray(new String[0]);
+        String[] b = ActivityList.toArray(new String[0]);
+        passedIntent.putExtra("JSONDataArray",a);
+        passedIntent.putExtra("ActivityListArray",b);
+        passedIntent.putExtra("CurrentCount",CurrentPageCount);
+    }
+
+    private void GoingForward(Intent passedIntent) {
+        if(!JSONData.contains(ItemData.toString())){
+            JSONData.add(ItemData.toString());
+        }
+
+        ActivityList.add(getClass().toString().split(" ")[1]);
+        CurrentPageCount++;
+        String[] a = JSONData.toArray(new String[0]);
+        String[] b = ActivityList.toArray(new String[0]);
+        passedIntent.putExtra("JSONDataArray",a);
+        passedIntent.putExtra("ActivityListArray",b);
+        passedIntent.putExtra("CurrentCount",CurrentPageCount);
+    }
+
+    public void MenuButtonHandle(final Button b){
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(b.getContext(), MainActivity.class);
+                startActivity(i);
+            }
+        });
+    }
+
+    public void ConvertExtras() throws JSONException {
+      JSONData.clear();
+      ActivityList.clear();
+      if(getIntent().getStringArrayExtra("JSONDataArray") != null){
+          Collections.addAll(JSONData,getIntent().getStringArrayExtra("JSONDataArray"));
+      }
+      if(getIntent().getStringArrayExtra("ActivityListArray") != null){
+          Collections.addAll(ActivityList,getIntent().getStringArrayExtra("ActivityListArray"));
+      }
+          CurrentPageCount = getIntent().getIntExtra("CurrentCount",0);
+
+      if(getIntent().getStringExtra("ItemData") != null){
+          if(!JSONData.contains(getIntent().getStringExtra("ItemData"))){
+              JSONData.add(getIntent().getStringExtra("ItemData"));
+          }
+          ItemData = new JSONObject(JSONData.get(CurrentPageCount));
+      }
+    }
+
 }
 

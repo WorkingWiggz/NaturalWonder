@@ -31,7 +31,9 @@ public class CharacterSheetsEditor extends BaseNWActivity {
     View FabButt;
     boolean StrSave = false,DexSave = false,ConSave = false,IntSave = false,WisSave = false,ChaSave = false;
     private TextView WeaponStrBo;
-
+    ArrayList<String> NewEquipmentList = new ArrayList<>();
+    ArrayList<String> NewSpellList = new ArrayList<>();
+    ArrayList<String> NewWeaponList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +124,7 @@ public class CharacterSheetsEditor extends BaseNWActivity {
                     BufferedReader br = new BufferedReader(new FileReader(Char));
                     JSONObject Data = new JSONObject(br.readLine());
                     Name.setText(Data.getString("Name"));
-                    Level.setText(Data.getString("Level"));
+                    Level.setText("Lv."+Data.getString("Level"));
                     Class.setText(Data.getString("Class"));
                     Race.setText(Data.getString("Race"));
                     int Lvl = Data.getInt("Level");
@@ -270,8 +272,15 @@ public class CharacterSheetsEditor extends BaseNWActivity {
 
 
                     Alignment.setText(Data.getString("Alignment"));
-                    String b = Data.getString("Equips")+Data.getString("ChosenEquips");
-                    Equipment.setText(b);
+                    String NL = System.lineSeparator();
+                    String b = Data.getString("Equips");
+                    String c = Data.getString("ChosenEquips");
+                    String d = c.split(",")[0];
+                    String e = c.split(",")[1];
+                    String f = d.substring(1);
+                    String g = e.substring(1,e.length()-1);
+                    String h = b + f +NL+ g;
+                    Equipment.setText(h);
 
                     int AthBo=0,AcroBo=0,SOHBo=0,StealBo=0,ArcaBo=0,HistBo=0,InvestBo=0,NatureBo=0,
                             ReligBo=0,AnimalBo=0,InsigBo=0,MediBo=0,PercepBo=0,SurvivalBo=0,DecepBo=0,
@@ -395,8 +404,18 @@ public class CharacterSheetsEditor extends BaseNWActivity {
                     }
 
 
-
-
+                    //Data.getJSONObject("money")!=null
+                    if(false){
+                        Plat.setText(Data.getJSONObject("money").getString("plat"));
+                        Gold.setText(Data.getJSONObject("money").getString("gold"));
+                        Silver.setText(Data.getJSONObject("money").getString("silv"));
+                        Copper.setText(Data.getJSONObject("money").getString("copp"));
+                    } else {
+                        Plat.setText("0");
+                        Gold.setText("0");
+                        Silver.setText("0");
+                        Copper.setText("0");
+                    }
 
 
                     String aa = "Athletics: "+Skills.get(0);
@@ -502,8 +521,13 @@ public class CharacterSheetsEditor extends BaseNWActivity {
     }
 
     private void BackToSheets() {
+        SaveChar();
         Intent i = new Intent(this,SheetsActivity.class);
         startActivity(i);
+    }
+
+    private void SaveChar() {
+
     }
 
     private int CalculateStatBonus(int Stat){

@@ -6,48 +6,78 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TotalText"
+        app:layout_constraintVertical_bias="0.0">
+
+        <com.thekidd.naturalwonder.Rolling.FlowLayout
+            android:id="@+id/DiceGroupCenter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp" />
+    </ScrollView>
+
     <io.github.yavski.fabspeeddial.FabSpeedDial
         android:id="@+id/AddStuffButt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
+        app:fabBackgroundTint="?attr/buttonimageback"
+        app:fabDrawableTint="?attr/buttonimagetint"
         app:fabGravity="bottom_end"
         app:fabMenu="@menu/fancymenu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:miniFabBackgroundTint="@android:color/white"
-        app:miniFabDrawableTint="@color/colorAccent"
-        app:miniFabTitleTextColor="@color/colorAccent"/>
+        app:miniFabBackgroundTint="?attr/itemiconback"
+        app:miniFabDrawableTint="?attr/itemicontint"
+        app:miniFabTitleBackgroundTint="?attr/itemtextback"
+        app:miniFabTitleTextColor="?attr/itemtext"
+        app:miniFabTitlesEnabled="true"/>
 
     <Button
         android:id="@+id/RollButt"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="96dp"
         android:layout_marginBottom="8dp"
         android:text="Roll Dice"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/DiceGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/guideline60"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/guideline20" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline60"
+        android:id="@+id/guideline20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.92" />
+        app:layout_constraintGuide_percent="0.88" />
+
+    <TextView
+        android:id="@+id/TotalText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="Total: 0"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

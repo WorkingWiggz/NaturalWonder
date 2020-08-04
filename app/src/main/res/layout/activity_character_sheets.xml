@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="(CharName)"
+        android:textColor="?attr/TextColor"
         android:textSize="22sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/guideline54"
@@ -29,13 +30,17 @@
         android:id="@+id/LVLText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
         android:text="(Level)"
+        android:textColor="?attr/TextColor"
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline54"
-        app:layout_constraintStart_toEndOf="@+id/RaceText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/ClassText"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -54,6 +59,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="Back"
+        android:textColor="?attr/TextColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,13 +69,14 @@
         android:id="@+id/ClassText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:text="(Class)"
+        android:textColor="?attr/TextColor"
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline54"
-        app:layout_constraintStart_toEndOf="@+id/CharacterName"
+        app:layout_constraintStart_toEndOf="@+id/RaceText"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.core.widget.NestedScrollView
@@ -95,13 +102,14 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Attributes"
-                android:textSize="30sp"
+                android:textColor="?attr/TextColor"
+                android:textSize="36sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
             <TableLayout
                 android:id="@+id/tableLayout10"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
@@ -111,17 +119,18 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView58">
 
                 <TableRow
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center">
 
 
                     <TextView
                         android:id="@+id/textView51"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Stat"
+                        android:textColor="?attr/TextColor"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         app:layout_constrainedHeight="false"
@@ -129,10 +138,11 @@
 
                     <TextView
                         android:id="@+id/textView54"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Score"
+                        android:text=" Score "
+                        android:textColor="?attr/TextColor"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         app:layout_constrainedHeight="false"
@@ -140,10 +150,11 @@
 
                     <TextView
                         android:id="@+id/textView69"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Bonus"
+                        android:text=" Bonus "
+                        android:textColor="?attr/TextColor"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         app:layout_constrainedHeight="true"
@@ -152,10 +163,11 @@
 
                     <TextView
                         android:id="@+id/textView53"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Save Bonus"
+                        android:text=" Save Bonus"
+                        android:textColor="?attr/TextColor"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         app:layout_constrainedHeight="false"
@@ -176,6 +188,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="Strength"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
 
@@ -185,6 +198,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="(STR)"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
 
@@ -194,6 +208,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="(STRBO)"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
 
@@ -203,6 +218,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="(STRSAV)"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
                 </TableRow>
@@ -218,6 +234,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="Dexterity"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
 
@@ -227,6 +244,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="(DEX)"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
 
@@ -236,6 +254,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="(DESBO)"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
 
@@ -245,6 +264,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="(DEXSAV)"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
                 </TableRow>
@@ -260,6 +280,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="Constitution"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
 
@@ -269,6 +290,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="(CON)"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
 
@@ -278,6 +300,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="(CONBO)"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
 
@@ -287,6 +310,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="(CONSAV)"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
                 </TableRow>
@@ -302,6 +326,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="Intelligence"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
 
@@ -311,6 +336,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="(INT)"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
 
@@ -320,6 +346,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="(INTBO)"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
 
@@ -329,6 +356,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="(INTSAV)"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
 
@@ -345,6 +373,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="Charisma"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
 
@@ -354,6 +383,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="(CHA)"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
 
@@ -363,6 +393,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="(CHABO)"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
 
@@ -372,6 +403,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="(CHASAV)"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
                 </TableRow>
@@ -389,6 +421,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="Wisdom"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
 
@@ -398,6 +431,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="(WIS)"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
 
@@ -407,6 +441,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="(WISBO)"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
 
@@ -416,6 +451,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="(WISSAV)"
+                        android:textColor="?attr/TextColor"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
                 </TableRow>
@@ -444,7 +480,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Initiative"
+                        android:text="Initiative "
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -453,7 +489,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="HP"
+                        android:text=" HP "
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -462,7 +498,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Speed"
+                        android:text=" Speed"
                         android:textSize="24sp"
                         android:textStyle="bold" />
                 </TableRow>
@@ -507,7 +543,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Hit Dice"
+                        android:text="Hit Dice "
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -516,7 +552,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="AC"
+                        android:text=" AC "
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -524,8 +560,8 @@
                         android:id="@+id/textView97"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:text="Proficiency"
+                        android:gravity="center"
+                        android:text=" Proficiency"
                         android:textSize="24sp"
                         android:textStyle="bold" />
                 </TableRow>
@@ -569,7 +605,8 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="Skills"
-                android:textSize="30sp"
+                android:textColor="?attr/TextColor"
+                android:textSize="36sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tableLayout10" />
@@ -604,7 +641,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Strength "
-                                android:textSize="28sp"
+                                android:textColor="?attr/TextColor"
+                                android:textSize="30sp"
                                 android:textStyle="bold" />
 
                         </TableRow>
@@ -618,7 +656,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Athletics"
-                                android:textSize="12sp" />
+                                android:textColor="?attr/TextColor"
+                                android:textSize="18sp" />
                         </TableRow>
 
                     </TableLayout>
@@ -637,7 +676,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Dexterity"
-                                android:textSize="28sp"
+                                android:textColor="?attr/TextColor"
+                                android:textSize="30sp"
                                 android:textStyle="bold" />
                         </TableRow>
 
@@ -650,7 +690,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Acrobatics"
-                                android:textSize="12sp" />
+                                android:textColor="?attr/TextColor"
+                                android:textSize="18sp" />
                         </TableRow>
 
                         <TableRow
@@ -662,7 +703,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Sleight of Hand"
-                                android:textSize="12sp" />
+                                android:textColor="?attr/TextColor"
+                                android:textSize="18sp" />
                         </TableRow>
 
                         <TableRow
@@ -674,7 +716,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Stealth"
-                                android:textSize="12sp" />
+                                android:textColor="?attr/TextColor"
+                                android:textSize="18sp" />
                         </TableRow>
 
                     </TableLayout>
@@ -699,7 +742,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Wisdom"
-                                android:textSize="28sp"
+                                android:textColor="?attr/TextColor"
+                                android:textSize="30sp"
                                 android:textStyle="bold" />
                         </TableRow>
 
@@ -712,7 +756,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:text="Animal Handling"
-                                android:textSize="12sp" />
+                                android:textColor="?attr/TextColor"
+                                android:textSize="18sp" />
 
                         </TableRow>
 
@@ -725,7 +770,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Insight"
-                                android:textSize="12sp" />
+                                android:textColor="?attr/TextColor"
+                                android:textSize="18sp" />
                         </TableRow>
 
                         <TableRow
@@ -737,7 +783,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Medicine"
-                                android:textSize="12sp" />
+                                android:textColor="?attr/TextColor"
+                                android:textSize="18sp" />
                         </TableRow>
 
                         <TableRow
@@ -749,7 +796,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Perception"
-                                android:textSize="12sp" />
+                                android:textColor="?attr/TextColor"
+                                android:textSize="18sp" />
                         </TableRow>
 
                         <TableRow
@@ -761,7 +809,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Survival"
-                                android:textSize="12sp" />
+                                android:textColor="?attr/TextColor"
+                                android:textSize="18sp" />
                         </TableRow>
                     </TableLayout>
 
@@ -779,7 +828,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Charisma"
-                                android:textSize="28sp"
+                                android:textColor="?attr/TextColor"
+                                android:textSize="30sp"
                                 android:textStyle="bold" />
                         </TableRow>
 
@@ -792,7 +842,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Deception"
-                                android:textSize="12sp" />
+                                android:textColor="?attr/TextColor"
+                                android:textSize="18sp" />
                         </TableRow>
 
                         <TableRow
@@ -804,7 +855,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Intimdation"
-                                android:textSize="12sp" />
+                                android:textColor="?attr/TextColor"
+                                android:textSize="18sp" />
                         </TableRow>
 
                         <TableRow
@@ -816,7 +868,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Performance"
-                                android:textSize="12sp" />
+                                android:textColor="?attr/TextColor"
+                                android:textSize="18sp" />
                         </TableRow>
 
                         <TableRow
@@ -828,7 +881,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Persuasion"
-                                android:textSize="12sp" />
+                                android:textColor="?attr/TextColor"
+                                android:textSize="18sp" />
                         </TableRow>
                     </TableLayout>
 
@@ -850,7 +904,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Intelligence"
-                                android:textSize="28sp"
+                                android:textColor="?attr/TextColor"
+                                android:textSize="30sp"
                                 android:textStyle="bold" />
                         </TableRow>
 
@@ -863,7 +918,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Arcana"
-                                android:textSize="12sp" />
+                                android:textColor="?attr/TextColor"
+                                android:textSize="18sp" />
                         </TableRow>
 
                         <TableRow
@@ -875,7 +931,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="History"
-                                android:textSize="12sp" />
+                                android:textColor="?attr/TextColor"
+                                android:textSize="18sp" />
                         </TableRow>
 
                         <TableRow
@@ -887,7 +944,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Investigation"
-                                android:textSize="12sp" />
+                                android:textColor="?attr/TextColor"
+                                android:textSize="18sp" />
                         </TableRow>
 
                         <TableRow
@@ -899,7 +957,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Nature"
-                                android:textSize="12sp" />
+                                android:textColor="?attr/TextColor"
+                                android:textSize="18sp" />
                         </TableRow>
 
                         <TableRow
@@ -911,7 +970,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Religion"
-                                android:textSize="12sp" />
+                                android:textColor="?attr/TextColor"
+                                android:textSize="18sp" />
 
                         </TableRow>
 
@@ -929,6 +989,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="Weapons"
+                android:textColor="?attr/TextColor"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -941,6 +1002,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Spells &amp; Magic"
+                android:textColor="?attr/TextColor"
                 android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/WeaponsList" />
@@ -952,7 +1014,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Character Info"
-                android:textSize="30sp"
+                android:textColor="?attr/TextColor"
+                android:textSize="36sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/SpellMagicList" />
 
@@ -974,7 +1037,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Equipment"
-                android:textSize="24sp"
+                android:textColor="?attr/TextColor"
+                android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView154" />
 
@@ -985,6 +1049,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="(Equip)"
+                android:textColor="?attr/TextColor"
+                android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView49" />
 
@@ -1005,7 +1071,8 @@
                         android:id="@+id/textView56"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Platinum Pieces" />
+                        android:text="Platinum Pieces"
+                        android:textColor="?attr/TextColor" />
                 </TableRow>
 
                 <TableRow
@@ -1017,7 +1084,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:textColor="?attr/TextColor" />
                 </TableRow>
 
             </TableLayout>
@@ -1039,7 +1108,8 @@
                         android:id="@+id/textView55"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Gold Pieces" />
+                        android:text="Gold Pieces"
+                        android:textColor="?attr/TextColor" />
                 </TableRow>
 
                 <TableRow
@@ -1051,7 +1121,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:textColor="?attr/TextColor" />
                 </TableRow>
 
             </TableLayout>
@@ -1073,7 +1145,8 @@
                         android:id="@+id/textView57"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Silver Pieces" />
+                        android:text="Silver Pieces"
+                        android:textColor="?attr/TextColor" />
                 </TableRow>
 
                 <TableRow
@@ -1085,7 +1158,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:textColor="?attr/TextColor" />
                 </TableRow>
 
             </TableLayout>
@@ -1107,7 +1182,8 @@
                         android:id="@+id/textView60"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Copper Pieces" />
+                        android:text="Copper Pieces"
+                        android:textColor="?attr/TextColor" />
                 </TableRow>
 
                 <TableRow
@@ -1119,7 +1195,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:textColor="?attr/TextColor" />
                 </TableRow>
 
             </TableLayout>
@@ -1131,7 +1209,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Money"
-                android:textSize="24sp"
+                android:textColor="?attr/TextColor"
+                android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/EquipText" />
 
@@ -1142,7 +1221,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Alignment"
-                android:textSize="24sp"
+                android:textColor="?attr/TextColor"
+                android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/CopperPieces" />
 
@@ -1154,6 +1234,8 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:text="(Alignment)"
+                android:textColor="?attr/TextColor"
+                android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView67" />
@@ -1167,7 +1249,8 @@
                 android:layout_weight="1"
                 android:text="Caster Level"
                 android:textAlignment="center"
-                android:textSize="22sp"
+                android:textColor="?attr/TextColor"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView153" />" />
@@ -1181,7 +1264,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="Spell Attack"
-                android:textSize="22sp"
+                android:textColor="?attr/TextColor"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/textView161"
                 app:layout_constraintTop_toBottomOf="@+id/textView153" />
@@ -1194,8 +1278,10 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="Spell DC"
-                android:textSize="22sp"
+                android:textColor="?attr/TextColor"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView163"
@@ -1207,6 +1293,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:text="(CLevel)"
+                android:textColor="?attr/TextColor"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="@id/textView161"
                 app:layout_constraintStart_toStartOf="@id/textView161"
                 app:layout_constraintTop_toTopOf="@+id/SDCText" />
@@ -1217,6 +1305,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:text="(SpellDC)"
+                android:textColor="?attr/TextColor"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="@id/textView162"
                 app:layout_constraintStart_toStartOf="@id/textView162"
                 app:layout_constraintTop_toTopOf="@+id/SAText" />
@@ -1228,9 +1318,11 @@
                 android:layout_marginTop="8dp"
                 android:gravity="center_horizontal"
                 android:text="(SpellA)"
+                android:textColor="?attr/TextColor"
                 app:layout_constraintEnd_toEndOf="@id/textView163"
                 app:layout_constraintStart_toStartOf="@id/textView163"
-                app:layout_constraintTop_toBottomOf="@+id/textView162" />
+                app:layout_constraintTop_toBottomOf="@+id/textView162"
+                android:textSize="18sp" />
 
             <TableLayout
                 android:id="@+id/WeaponsTable"
@@ -1274,6 +1366,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center|center_horizontal"
                 android:text="(StrengthBo)"
+                android:textColor="?attr/TextColor"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="@id/textView156"
                 app:layout_constraintStart_toStartOf="@id/textView156"
                 app:layout_constraintTop_toTopOf="@+id/ProfBoText" />
@@ -1286,7 +1380,8 @@
                 android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:text="Strength "
-                android:textSize="22sp"
+                android:textColor="?attr/TextColor"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView152" />
@@ -1298,6 +1393,8 @@
                 android:layout_marginTop="16dp"
                 android:gravity="center|center_horizontal"
                 android:text="(SpecialAtt)"
+                android:textColor="?attr/TextColor"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="@id/SpecialAttTitle"
                 app:layout_constraintStart_toStartOf="@id/SpecialAttTitle"
                 app:layout_constraintTop_toBottomOf="@+id/SpecialAttTitle" />
@@ -1308,6 +1405,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center|center_horizontal"
                 android:text="(ProfBonus)"
+                android:textColor="?attr/TextColor"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="@id/textView155"
                 app:layout_constraintStart_toStartOf="@id/textView155"
                 app:layout_constraintTop_toTopOf="@+id/SpecialAttack" />
@@ -1319,7 +1418,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:text="Proficiency "
-                android:textSize="22sp"
+                android:textColor="?attr/TextColor"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/textView156"
                 app:layout_constraintTop_toBottomOf="@+id/textView152" />
@@ -1332,7 +1432,8 @@
                 android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:text="(Special Title)"
-                android:textSize="22sp"
+                android:textColor="?attr/TextColor"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/textView155"
                 app:layout_constraintTop_toBottomOf="@+id/textView152" />
@@ -1346,25 +1447,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
+        android:visibility="invisible"
+        app:fabBackgroundTint="?attr/buttonimageback"
+        app:fabDrawableTint="?attr/buttonimagetint"
         app:fabGravity="bottom_end"
         app:fabMenu="@menu/menu"
         app:layout_constraintBottom_toTopOf="@+id/guideline53"
         app:layout_constraintEnd_toEndOf="parent"
-        app:miniFabBackgroundTint="@android:color/white"
-        app:miniFabDrawableTint="?attr/colorPrimaryDark"
-        app:miniFabTitleTextColor="?attr/colorPrimaryDark" />
+        app:miniFabBackgroundTint="?attr/itemiconback"
+        app:miniFabDrawableTint="?attr/itemicontint"
+        app:miniFabTitleBackgroundTint="?attr/itemtextback"
+        app:miniFabTitleTextColor="?attr/itemtext" />
 
     <TextView
         android:id="@+id/RaceText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:text="(Race)"
+        android:textColor="?attr/TextColor"
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline54"
-        app:layout_constraintStart_toEndOf="@+id/ClassText"
+        app:layout_constraintStart_toEndOf="@+id/CharacterName"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

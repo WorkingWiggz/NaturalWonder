@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.thekidd.naturalwonder.MainActivity;
@@ -18,7 +19,8 @@ public class WeaponProperties extends BasicItemActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weapon_properties);
-
+        Button MenuButt = findViewById(R.id.MenuButt);
+        MenuButtonHandle(MenuButt);
         Title = findViewById(R.id.TitleText);
         DescText = findViewById(R.id.DescText);
         try{

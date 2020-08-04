@@ -1,8 +1,6 @@
 package com.thekidd.naturalwonder.LookUp.ItemActivities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.JsonReader;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -10,8 +8,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.thekidd.naturalwonder.LookUp.CustomListAdapter;
-import com.thekidd.naturalwonder.LookUp.LookingUpActivity;
-import com.thekidd.naturalwonder.MainActivity;
 import com.thekidd.naturalwonder.R;
 
 import org.json.JSONArray;
@@ -35,6 +31,8 @@ public class AbilityScores extends BasicItemActivity {
         DescText = findViewById(R.id.DescText);
         SkillsTitle = findViewById(R.id.SkillsTitle);
         BackButt = findViewById(R.id.BackButt);
+        Button MenuButt = findViewById(R.id.MenuButt);
+        MenuButtonHandle(MenuButt);
         Skills =  findViewById(R.id.SkillsList);
 
         try {

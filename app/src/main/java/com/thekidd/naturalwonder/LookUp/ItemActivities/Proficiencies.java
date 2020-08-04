@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,7 +21,8 @@ public class Proficiencies extends BasicItemActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_proficiencies);
-
+        Button MenuButt = findViewById(R.id.MenuButt);
+        MenuButtonHandle(MenuButt);
         TitleText = findViewById(R.id.TitleText);
         TypeText = findViewById(R.id.TypeText);
         RacesText = findViewById(R.id.RacesText);
@@ -33,7 +35,7 @@ public class Proficiencies extends BasicItemActivity {
             TitleText.setText(a);
 
             String b = ItemData.getString("type");
-            TypeText.setText(b);
+            TypeText.setText("Type:" + b);
 
             JSONArray c = ItemData.getJSONArray("classes");
             String NL = System.getProperty("line.separator");

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -40,17 +41,18 @@ import java.util.concurrent.ThreadLocalRandom;
     ArrayList<CheckBox> SkillsList = new ArrayList<>();
     Button RollStats,RandLv,RollHP,FinalChar,Back;
     EditText NameText;
+    int SkillLimit = 0;
+    int NumOfChoices=-1;
     RadioGroup Races,Classes, Alignments;
     EditText LVLTB,HPTB,STRTB,WISTB,CHATB,INTTB,CONTB,DEXTB;
     ArrayList<JSONObject> StartEquipData = new ArrayList<>();
     ArrayList<Integer> RadioPosList = new ArrayList<>();
-    HashMap<String,Integer> statBonuses = new HashMap<>();
-    ArrayList<RadioGroup> idList;
-    Thread LoadData;
+    ArrayList<String> AvailableProfs = new ArrayList<>();
+     Thread LoadData;
     TextView CET;
     int HitDice;
 
-    @Override
+     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup_character);
@@ -277,6 +279,19 @@ import java.util.concurrent.ThreadLocalRandom;
             SkillsList.add(b);
         }
 
+        for(int i=0;i<SkillsList.size();i++){
+            SkillsList.get(i).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    boolean tmpa = ProfCheck();
+                    if(!tmpa){
+                        CheckBox a = (CheckBox) v;
+                        a.setChecked(false);
+                    }
+                }
+            });
+        }
+
         NameText = findViewById(R.id.DescText);
         RollStats = findViewById(R.id.RollStatsButt);
         RandLv = findViewById(R.id.RandomLvlButt);
@@ -347,7 +362,8 @@ import java.util.concurrent.ThreadLocalRandom;
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 int a = 0;
                 RadioButton g = findViewById(Classes.getCheckedRadioButtonId());
-                switch (g.getText().toString()){
+               String  b = g.getText().toString();
+                switch (b){
                     case "Barbarian":
                         a = 0;
                     break;
@@ -386,10 +402,11 @@ import java.util.concurrent.ThreadLocalRandom;
                         break;
                 }
                 try {
-                    LoadStartEquipment(a);
+                    LoadStartEquipment(b);
+                    LoadProficiencies(a);
                     SetHitDice(a);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                } catch (Exception e) {
+                    ErrorHandle(e,getApplicationContext());
                 }
 
             }
@@ -403,6 +420,220 @@ import java.util.concurrent.ThreadLocalRandom;
         });
 
     }
+
+     private boolean ProfCheck() {
+         boolean hold = false;
+         Toast NoRaceSelected = Toast.makeText(getApplicationContext(),"No race selected. Please select a race above.",Toast.LENGTH_SHORT);
+         Toast TooManyProfs = Toast.makeText(getApplicationContext(),"Too many proficiencies selected. Uncheck one to check this one.",Toast.LENGTH_SHORT);
+         if(Races.getCheckedRadioButtonId() != -1){
+             int CheckedCount = 0;
+             for(int i=0;i<SkillsList.size();i++){
+                 if(SkillsList.get(i).isChecked()){
+                     CheckedCount++;
+                 }
+             }
+             if(CheckedCount<=SkillLimit){
+                 hold = true;
+             } else {
+                TooManyProfs.show();
+             }
+         } else {
+             NoRaceSelected.show();
+         }
+         return hold;
+     }
+
+     private void LoadProficiencies(int a) {
+        AvailableProfs.clear();
+        switch (a){
+            case 0:
+                BarbarianProfs();
+            break;
+            case 1:
+                BardProfs();
+            break;
+            case 2:
+                ClericProfs();
+            break;
+            case 3:
+                DruidProfs();
+            break;
+            case 4:
+                FighterProfs();
+            break;
+            case 5:
+                MonkProfs();
+            break;
+            case 6:
+                PaladinProfs();
+            break;
+            case 7:
+                RangerProfs();
+            break;
+            case 8:
+                RogueProfs();
+            break;
+            case 9:
+               SorcererProfs();
+            break;
+            case 10:
+                WarlockProfs();
+            break;
+            case 11:
+               WizardProfs();
+            break;
+        }
+             if(!(AvailableProfs.get(0).equals("Bard"))){
+                 for(int i = 0;i<SkillsList.size();i++){
+                     String b = (String) SkillsList.get(i).getText();
+                     boolean inlist = false;
+                     for(int j =0;j<AvailableProfs.size();j++){
+                        if(b.equals(AvailableProfs.get(j))){
+                            inlist = true;
+                        }
+                     }
+                     if(inlist){
+                         SkillsList.get(i).setClickable(true);
+                         SkillsList.get(i).setVisibility(View.VISIBLE);
+                     } else {
+                         SkillsList.get(i).setClickable(false);
+                         SkillsList.get(i).setVisibility(View.INVISIBLE);
+                     }
+                 }
+             } else {
+                for(int i =0;i<SkillsList.size();i++){
+                    SkillsList.get(i).setClickable(true);
+                    SkillsList.get(i).setVisibility(View.VISIBLE);
+                }
+
+             }
+     }
+
+     private void WizardProfs() {
+         SkillLimit = 2;
+         AvailableProfs.add("Arcana");
+         AvailableProfs.add("History");
+         AvailableProfs.add("Insight");
+         AvailableProfs.add("Investigation");
+         AvailableProfs.add("Medicine");
+         AvailableProfs.add("Religion");
+     }
+
+     private void WarlockProfs() {
+         SkillLimit = 2;
+         AvailableProfs.add("Arcana");
+         AvailableProfs.add("Deception");
+         AvailableProfs.add("History");
+         AvailableProfs.add("Intimidation");
+         AvailableProfs.add("Investigation");
+         AvailableProfs.add("Religion");
+         AvailableProfs.add("Nature");
+
+     }
+
+     private void SorcererProfs() {
+         SkillLimit = 2;
+         AvailableProfs.add("Arcana");
+         AvailableProfs.add("Deception");
+         AvailableProfs.add("Insight");
+         AvailableProfs.add("Intimidation");
+         AvailableProfs.add("Persiasion");
+         AvailableProfs.add("Religion");
+
+     }
+
+     private void RogueProfs() {
+         SkillLimit = 4;
+         AvailableProfs.add("Athletics");
+         AvailableProfs.add("Deception");
+         AvailableProfs.add("Insight");
+         AvailableProfs.add("Investigation");
+         AvailableProfs.add("Performance");
+         AvailableProfs.add("Perception");
+         AvailableProfs.add("Persuasion");
+         AvailableProfs.add("Sleight of Hand");
+         AvailableProfs.add("Stealth");
+     }
+
+     private void RangerProfs() {
+        SkillLimit = 3;
+        AvailableProfs.add("Animal Handling");
+        AvailableProfs.add("Athletics");
+        AvailableProfs.add("Insight");
+        AvailableProfs.add("Investigation");
+        AvailableProfs.add("Nature");
+        AvailableProfs.add("Perception");
+        AvailableProfs.add("Survival");
+        AvailableProfs.add("Stealth");
+     }
+
+     private void PaladinProfs() {
+        SkillLimit = 2;
+        AvailableProfs.add("Athletics");
+        AvailableProfs.add("Insight");
+        AvailableProfs.add("Intimidation");
+        AvailableProfs.add("Medicine");
+        AvailableProfs.add("Persuasion");
+        AvailableProfs.add("Religion");
+     }
+
+     private void MonkProfs() {
+             SkillLimit = 2;
+             AvailableProfs.add("Acrobatics");
+             AvailableProfs.add("Athletics");
+             AvailableProfs.add("History");
+             AvailableProfs.add("Insight");
+             AvailableProfs.add("Religion");
+             AvailableProfs.add("Stealth");
+     }
+
+     private void FighterProfs() {
+         SkillLimit = 2;
+         AvailableProfs.add("Acrobatics");
+         AvailableProfs.add("Athletics");
+         AvailableProfs.add("Animal Handling");
+         AvailableProfs.add("Intimidation");
+         AvailableProfs.add("Perception");
+         AvailableProfs.add("Insight");
+         AvailableProfs.add("History");
+         AvailableProfs.add("Survival");
+     }
+
+     private void DruidProfs() {
+         SkillLimit = 2;
+         AvailableProfs.add("Arcana");
+         AvailableProfs.add("Animal Handling");
+         AvailableProfs.add("Insight");
+         AvailableProfs.add("Nature");
+         AvailableProfs.add("Perception");
+         AvailableProfs.add("Religion");
+         AvailableProfs.add("Survival");
+
+     }
+
+     private void ClericProfs() {
+         AvailableProfs.add("History");
+         AvailableProfs.add("Insight");
+         AvailableProfs.add("Medicine");
+         AvailableProfs.add("Persuasion");
+         AvailableProfs.add("Religion");
+         SkillLimit = 2;
+     }
+
+     private void BardProfs() {
+             SkillLimit = 3;
+             AvailableProfs.add("Bard");
+     }
+
+     private void BarbarianProfs() {
+            SkillLimit = 2;
+             AvailableProfs.add("Athletics");
+             AvailableProfs.add("Animal Handling");
+             AvailableProfs.add("Intimidation");
+             AvailableProfs.add("Nature");
+             AvailableProfs.add("Perception");
+             AvailableProfs.add("Survival");
+     }
 
      private void SetHitDice(int checkedRadioButtonId) {
         switch (checkedRadioButtonId){
@@ -490,9 +721,8 @@ import java.util.concurrent.ThreadLocalRandom;
      }
 
     private void RollHealth() throws Exception {
-        Toast UnsetError = new Toast(this);
-        UnsetError.makeText(this,"Class not Chosen please select class.",Toast.LENGTH_SHORT);
-        if(HitDice == 0) {
+        Toast UnsetError =  Toast.makeText(getApplicationContext(),"Class not Chosen please select class.",Toast.LENGTH_SHORT);
+        if(HitDice == 0 || Classes.getCheckedRadioButtonId() == -1 ) {
             UnsetError.show();
         } else if (HitDice == 6 ||HitDice == 8 || HitDice == 10||HitDice == 12) {
             int ConBo = (Integer.parseInt(CONTB.getText().toString()) - 10) / 2;
@@ -518,12 +748,22 @@ import java.util.concurrent.ThreadLocalRandom;
 
     private void FinalizeCharacter() throws JSONException, IOException {
         //TODO Check all details have been filled out and completed. Then Save as a JSON file and past this data to the Sheets activity.
-        boolean First,Second,Third,Fourth = false,Fifth,Sixth=true;
+        boolean First,Second,Third,Fourth = false,Fifth,Sixth,Name;
         RadioGroup r = findViewById(R.id.RaceGroup);
         RadioGroup a = findViewById(R.id.ClassGroup);
         RadioGroup d = findViewById(R.id.AlignmentGroup);
+        ArrayList<String> ChosenEquips = new ArrayList<>();
 
         LinearLayout lay = findViewById(R.id.ListLayout);
+
+        //Name Section Check
+        EditText nametext = findViewById(R.id.DescText);
+        if(!(nametext.getText().equals(""))){
+            Name = true;
+        } else {
+            Name = false;
+        }
+
         //First Section Check
         if(r.getCheckedRadioButtonId() != -1){
             First = true;
@@ -561,18 +801,32 @@ import java.util.concurrent.ThreadLocalRandom;
         }
 
         //Sixth Section Check
-        for(int i =0;i<RadioPosList.size();i++){
-            RadioGroup rg = (RadioGroup) lay.getChildAt(RadioPosList.get(i));
-            if(rg.getCheckedRadioButtonId() ==-1){
-                Sixth = false;
+        int validatorcount=0;
+        for(int i =1;i<NumOfChoices+1;i++){
+            ArrayList<View> x = getViewsByTag((LinearLayout)findViewById(R.id.ListLayout),"Choice"+i);
+            boolean AnyChecked = false;
+            for(int j =0;j<x.size();j++){
+                CheckBox b = (CheckBox)x.get(j);
+                if(b.isChecked()){
+                    AnyChecked = true;
+                    ChosenEquips.add(b.getText().toString());
+                    break;
+                }
+            }
+            if(AnyChecked){
+                validatorcount++;
             }
         }
+        if(validatorcount == NumOfChoices){
+            Sixth = true;
+        } else {
+            Sixth = false;
+        }
 
-        if(First&&Second&&Third&&Fourth&&Fifth&&Sixth){
+        if(First&&Second&&Third&&Fourth&&Fifth&&Sixth&&Name){
             String name,Race,Class,Alignment,Equips;
             int LVL,HP,STR,DEX,CHA,CON,INT,WIS;
             JSONArray Skills = new JSONArray();
-            ArrayList<String> ChosenEquips = new ArrayList<>();
             JSONObject CharacterFile = new JSONObject();
 
             if(!NameText.getText().toString().equals("")){
@@ -649,14 +903,7 @@ import java.util.concurrent.ThreadLocalRandom;
                 Equips = "";
             }
 
-            if(!idList.isEmpty()){
-                for(int i=0;i<idList.size();i++){
-                    if(idList.get(i).getCheckedRadioButtonId() !=-1){
-                        RadioButton b = findViewById(idList.get(i).getCheckedRadioButtonId());
-                        ChosenEquips.add(b.getText().toString());
-                    }
-                }
-            }
+
 
             if(Races.getCheckedRadioButtonId() != -1){
                 RadioButton b = findViewById(Races.getCheckedRadioButtonId());
@@ -713,15 +960,41 @@ import java.util.concurrent.ThreadLocalRandom;
             i.putExtra("FilePath",CharJSON.getAbsolutePath());
             startActivity(i);
         } else {
-            Toast toast = Toast.makeText(this,"",Toast.LENGTH_LONG);
-            toast.show();
+           try{
+               if(!Name){
+                   Toast toast = Toast.makeText(this,"Please name your character.",Toast.LENGTH_LONG);
+                   toast.show();
+               } else if(!First){
+                   Toast toast = Toast.makeText(this,"Please select your character race.",Toast.LENGTH_LONG);
+                   toast.show();
+               } else if(!Second){
+                   Toast toast = Toast.makeText(this,"Please select your character class.",Toast.LENGTH_LONG);
+                   toast.show();
+               } else if(!Third){
+                   Toast toast = Toast.makeText(this,"Please roll ability scores, the level and the HP of your character.",Toast.LENGTH_LONG);
+                   toast.show();
+               } else if(!Fourth){
+                   Toast toast = Toast.makeText(this,"Please select your character's proficient skills.",Toast.LENGTH_LONG);
+                   toast.show();
+               } else if(!Fifth){
+                   Toast toast = Toast.makeText(this,"Please select your character's alignment.",Toast.LENGTH_LONG);
+                   toast.show();
+               } else if(!Sixth){
+                   Toast toast = Toast.makeText(this,"Please select your character's equipment",Toast.LENGTH_LONG);
+                   toast.show();
+               }
+               else {
+                   throw new Exception("Error Within Char Finalization: Toast Section.");
+               }
+           } catch (Exception e){
+               ErrorHandle(e,this);
+           }
         }
     }
 
-    private void LoadStartEquipment(int checkedRadioButtonId) throws JSONException {
+    private void LoadStartEquipment(String ClassString) throws Exception {
         //TODO Load the Start Equipment for the selected class
-
-        JSONObject Data = FetchStartEquipment(checkedRadioButtonId);
+        JSONObject Data = FetchStartEquipment(ClassString);
         JSONArray a = Data.getJSONArray("starting_equipment");
         String e = "";
         for(int i = 0; i<a.length();i++){
@@ -741,25 +1014,28 @@ import java.util.concurrent.ThreadLocalRandom;
         int x = 0;
         try {
             x = Data.getInt("choices_to_make");
+            NumOfChoices = x;
             for(int i = 1; i<x+1; i++){
+                ArrayList<Integer> ChoiceGroup = new ArrayList<>();
                 String s = "choice_" +i;
                 TextView ChoiceText = new TextView(this);
                 String tmp ="Choice "+i+":";
                 ChoiceText.setText(tmp);
                 ChoiceText.setTextSize(25);
                 layout.addView(ChoiceText);
-                idList = new ArrayList<>();
+                Space spacing = new Space(this);
+                spacing.setMinimumHeight(8);
+                layout.addView(spacing);
                 JSONArray ChoiceData = Data.getJSONArray(s);
                 for(int j =0;j<ChoiceData.length();j++){
-                    final RadioGroup gr = new RadioGroup(this);
-                    layout.addView(gr);
+                    ChoiceGroup.clear();
                     int count = ChoiceData.getJSONObject(j).getInt("choose");
                     JSONArray FromData = ChoiceData.getJSONObject(j).getJSONArray("from");
+                    CheckBox butt;
                     for(int g = 0;g<FromData.length();g++) {
                           String ChoiceString = "";
                           JSONObject itemData =FromData.getJSONObject(g);
                           for(int h = 0;h<count;h++) {
-                              String str = "";
                               String name  = itemData.getJSONObject("item").getString("name");
                               int Quant = FromData.getJSONObject(h).getInt("quantity");
                               String full = Quant +"x "+name;
@@ -771,20 +1047,23 @@ import java.util.concurrent.ThreadLocalRandom;
                                   ChoiceString = ChoiceString + full + " , ";
                               }
                           }
-                          final RadioButton butt = new RadioButton(this);
-
-                          gr.addView(butt);
-                          butt.setText(ChoiceString);
-                          RadioGroup group = (RadioGroup) butt.getParent();
-                          if(!(idList.contains(group))){
-                                idList.add(group);
-                          }
-                          butt.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                UncheckButton((RadioGroup) butt.getParent(),idList);
+                          butt = new CheckBox(this);
+                            if(ThemeMode){
+                                butt.setTextColor(getResources().getColor(R.color.LightMode_Text));
+                            } else {
+                                butt.setTextColor(getResources().getColor(R.color.DarkMode_Text));
                             }
+                          butt.setTextSize(18f);
+                          butt.setTag("Choice"+i);
+                          butt.setText(ChoiceString);
+                          butt.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    CheckBox r = (CheckBox) v;
+                                    SortChoice(r);
+                                }
                             });
+                        layout.addView(butt);
                     }
                     if(j != ChoiceData.length()-1){
                         Space spa = new Space(this);
@@ -800,24 +1079,32 @@ import java.util.concurrent.ThreadLocalRandom;
                         layout.addView(spa2);
                     }
                 }
-
             }
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
  }
 
-     private void UncheckButton(RadioGroup parent, ArrayList<RadioGroup> idList){
-        for(int i =0;i<idList.size();i++){
-            if(parent != idList.get(i)){
-                idList.get(i).clearCheck();
-            }
-        }
+     private void SortChoice(CheckBox r) {
+       LinearLayout c = findViewById(R.id.ListLayout);
+       ArrayList<View> a = getViewsByTag(c,r.getTag().toString());
+       for(int i =0;i<a.size();i++) {
+           CheckBox b = (CheckBox) a.get(i);
+           if(!(r == b)){
+               b.setChecked(false);
+           }
+       }
      }
 
-     private JSONObject FetchStartEquipment(int checkedRadioButtonId) {
-        JSONObject hold;
-        hold = StartEquipData.get(checkedRadioButtonId);
+
+     private JSONObject FetchStartEquipment(String ClassString) throws Exception {
+      JSONObject hold = new JSONObject();
+        for(int i = 0;i<StartEquipData.size();i++) {
+            String a = StartEquipData.get(i).getJSONObject("class").getString("name");
+            if (a.equals(ClassString)) {
+                hold = StartEquipData.get(i);
+            }
+        }
         return hold;
     }
 
@@ -829,5 +1116,10 @@ import java.util.concurrent.ThreadLocalRandom;
             }
             return ThreadLocalRandom.current().nextInt((High - Low)+1)+Low;
     }
+
+
+
+
+
 
 }

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.thekidd.naturalwonder.MainActivity;
@@ -17,7 +18,8 @@ public class MagicSchools extends BasicItemActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_magic_schools);
-
+        Button MenuButt = findViewById(R.id.MenuButt);
+        MenuButtonHandle(MenuButt);
         TitleText = findViewById(R.id.TitleText);
         DescText = findViewById(R.id.DescText);
         try{

@@ -3,6 +3,7 @@ package com.thekidd.naturalwonder.LookUp.ItemActivities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -24,7 +25,8 @@ public class SpellCasting extends BasicItemActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spell_casting);
-
+        Button MenuButt = findViewById(R.id.MenuButt);
+        MenuButtonHandle(MenuButt);
         try {
             NameText = findViewById(R.id.DescText);
             LevelText = findViewById(R.id.LevelText);

@@ -1,13 +1,10 @@
 package com.thekidd.naturalwonder.LookUp.ItemActivities;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.thekidd.naturalwonder.MainActivity;
 import com.thekidd.naturalwonder.R;
 
 import org.json.JSONArray;
@@ -20,7 +17,8 @@ public class Subclasses extends BasicItemActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subclasses);
-
+        Button MenuButt = findViewById(R.id.MenuButt);
+        MenuButtonHandle(MenuButt);
         CNameText = findViewById(R.id.CNameText);
         OGCLassText = findViewById(R.id.OGCLassText);
         FTitleText = findViewById(R.id.FTitleText);

@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class RolingBaseNW extends AppCompatActivity {
     int Theme;
-    protected Boolean ThemeMode;
+    public Boolean ThemeMode;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         SharedPreferences a = getSharedPreferences("NWSharedPrefs",MODE_PRIVATE);

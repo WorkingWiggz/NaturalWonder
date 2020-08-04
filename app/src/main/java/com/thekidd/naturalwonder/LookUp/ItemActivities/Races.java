@@ -3,6 +3,7 @@ package com.thekidd.naturalwonder.LookUp.ItemActivities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,7 +21,8 @@ public class Races extends BasicItemActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_races);
-
+        Button MenuButt = findViewById(R.id.MenuButt);
+        MenuButtonHandle(MenuButt);
         NameText = findViewById(R.id.DescText);
         SpeedText = findViewById(R.id.SpeedText);
         AlignText = findViewById(R.id.AlignmentText);
@@ -34,6 +36,7 @@ public class Races extends BasicItemActivity {
         TraitsList = findViewById(R.id.TraitsList);
         TraitOptList = findViewById(R.id.TraitOptList);
         SubRacesList = findViewById(R.id.SubRacesList);
+
         try {
             String a = ItemData.getString("name");
             String b = ItemData.getString("speed");

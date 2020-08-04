@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="itemtext" format="color"/>
+    <attr name="itemtextback" format="color"/>
+    <attr name="itemicontint" format="color"/>
+    <attr name="itemiconback" format="color"/>
+    <attr name="buttonimagetint" format="color"/>
+    <attr name="buttonimageback" format="color"/>
+
+    <attr name="TextColor" format="color" />
+    <attr name="AppBackground" format="color" />
+    <attr name="AppAccent" format="color" />
+
+    
+    <dimen name="flowlayout_horizontal_padding">10dp</dimen>
+    <dimen name="flowlayout_vertical_padding">10dp</dimen>
+</resources>

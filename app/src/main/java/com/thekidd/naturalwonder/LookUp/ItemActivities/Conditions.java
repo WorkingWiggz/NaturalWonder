@@ -18,7 +18,8 @@ public class Conditions extends BasicItemActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conditions);
-
+        Button MenuButt = findViewById(R.id.MenuButt);
+        MenuButtonHandle(MenuButt);
         Title = findViewById(R.id.ConName);
         Desc = findViewById(R.id.DescText);
         try {

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.thekidd.naturalwonder.MainActivity;
@@ -17,7 +18,8 @@ public class Features extends BasicItemActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_features);
-
+        Button MenuButt = findViewById(R.id.MenuButt);
+        MenuButtonHandle(MenuButt);
         Fname = findViewById(R.id.FeatName);
         Cname = findViewById(R.id.ClassName);
         Desc = findViewById(R.id.DescText);
@@ -25,7 +27,7 @@ public class Features extends BasicItemActivity {
 
         try{
             Fname.setText(ItemData.getString("name"));
-            Cname.setText(ItemData.getJSONObject("class").getString("name"));
+            Cname.setText("Class: "+ItemData.getJSONObject("class").getString("name"));
             String c ="Required Level: "+ ItemData.getString("level");
             RLvl.setText(c);
             String a = "";

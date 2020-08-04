@@ -14,16 +14,22 @@ import android.widget.TextView;
 import com.thekidd.naturalwonder.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class AdvDiceAdapter extends ArrayAdapter {
     private Activity context;
     private ArrayList<String> DiceRolling;
+    Map<EditText,Integer> Rows = new HashMap<>();
+    TextView Total;
 
-    public AdvDiceAdapter(Activity context, ArrayList<String> DiceRolling){
+
+    public AdvDiceAdapter(Activity context, ArrayList<String> DiceRolling,TextView TotalTextView){
         super(context, R.layout.simpledice_row);
         this.context = context;
         this.DiceRolling = DiceRolling;
+        this.Total = TotalTextView;
     }
 
     public View getView(int pos,View view, ViewGroup parent){
@@ -47,11 +53,34 @@ public class AdvDiceAdapter extends ArrayAdapter {
         String a = RollParams.getText().toString();
         String[] b = a.split("d");
         int result =0;
+        String d = "";
         for(int i=0;i<Integer.parseInt(b[0]);i++){
             int c = GetRandInt(1,Integer.parseInt(b[1]));
+            d = d + c;
+            if(i < Integer.parseInt(b[0])-1){
+                d=d+", ";
+            }
             result = result + c;
         }
-        resTB.setText(String.valueOf(result));
+        if(!Rows.containsKey(resTB)){
+            Rows.put(resTB,result);
+        }else {
+            Rows.replace(resTB,result);
+        }
+        String e = result+" ("+d+")";
+        resTB.setText(e);
+        UpdateTotal();
+    }
+
+    private void UpdateTotal(){
+        String hold;
+        int d=0;
+        for(Integer Num : Rows.values()){
+            d = d + Num;
+        }
+        hold = "" + d;
+        String f = "Total: " + hold;
+        Total.setText(f);
     }
 
     private int GetRandInt(int Low, int High) {
@@ -63,16 +92,32 @@ public class AdvDiceAdapter extends ArrayAdapter {
 
     void AddtoList(String c) {
         this.DiceRolling.add(c);
+        ResetTotal();
         notifyDataSetChanged();
     }
+
+    private void ResetTotal() {
+        Rows.clear();
+        UpdateTotal();
+    }
+
 
     @Override
     public int getCount() {
         return DiceRolling.size();
     }
 
-    public void DeleteItem(int pos){
+    public void DeleteItem(int pos,View view){
+        EditText ToDelete = view.findViewById(R.id.ResultTB);
+        Rows.remove(ToDelete);
         DiceRolling.remove(pos);
         notifyDataSetChanged();
+        UpdateTotal();
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
+        ResetTotal();
     }
 }
