@@ -11,7 +11,7 @@
     <color name="LightMode_Text"> #000000 </color>
     <color name="LightMode_Back">#3FB1ED</color>
     <color name="LightMode_ButtonBack">#FFFFFF</color>
-
+    <color name="Hint">#919191</color>
 
     <color name="DarkModeItemText"> #000000 </color>
     <color name="DarkModeItemTextBack"> #000000 </color>

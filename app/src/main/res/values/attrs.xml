@@ -8,6 +8,7 @@
     <attr name="buttonimageback" format="color"/>
 
     <attr name="TextColor" format="color" />
+    <attr name="TextColorHint" format="color" />
     <attr name="AppBackground" format="color" />
     <attr name="AppAccent" format="color" />
 

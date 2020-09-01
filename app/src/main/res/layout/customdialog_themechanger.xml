@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/RedText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="0"
+            android:textColor="#FF0000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView144" />
+
+        <TextView
+            android:id="@+id/textView119"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Light Mode"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/BlueText" />
+
+        <TextView
+            android:id="@+id/textView121"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Selected\n Color"
+            app:layout_constraintBottom_toBottomOf="@+id/textView119"
+            app:layout_constraintEnd_toStartOf="@+id/textView123"
+            app:layout_constraintStart_toEndOf="@+id/textView119"
+            app:layout_constraintTop_toTopOf="@+id/textView119" />
+
+        <TextView
+            android:id="@+id/textView123"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:text="Dark Mode"
+            app:layout_constraintBottom_toBottomOf="@+id/textView119"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView119"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/LightColorText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/textView119"
+            app:layout_constraintStart_toStartOf="@+id/textView119"
+            app:layout_constraintTop_toBottomOf="@+id/LightModeButt" />
+
+        <TextView
+            android:id="@+id/SelectedColorText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="#00FF00"
+            app:layout_constraintBottom_toBottomOf="@+id/LightColorText"
+            app:layout_constraintEnd_toEndOf="@+id/textView121"
+            app:layout_constraintStart_toStartOf="@+id/textView121"
+            app:layout_constraintTop_toBottomOf="@+id/SelectedColorButt" />
+
+        <TextView
+            android:id="@+id/DarkColorText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="#000000"
+            app:layout_constraintBottom_toBottomOf="@+id/LightColorText"
+            app:layout_constraintEnd_toEndOf="@+id/textView123"
+            app:layout_constraintStart_toStartOf="@+id/textView123"
+            app:layout_constraintTop_toBottomOf="@+id/DarkModeButt" />
+
+        <Button
+            android:id="@+id/LightModeButt"
+            android:layout_width="0dp"
+            android:layout_height="63dp"
+            android:layout_marginTop="16dp"
+            android:clickable="false"
+            app:layout_constraintEnd_toEndOf="@+id/textView119"
+            app:layout_constraintStart_toStartOf="@+id/textView119"
+            app:layout_constraintTop_toBottomOf="@+id/textView119" />
+
+        <Button
+            android:id="@+id/SelectedColorButt"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clickable="false"
+            app:layout_constraintBottom_toBottomOf="@+id/LightModeButt"
+            app:layout_constraintEnd_toEndOf="@+id/textView121"
+            app:layout_constraintStart_toStartOf="@+id/textView121"
+            app:layout_constraintTop_toTopOf="@+id/LightModeButt" />
+
+        <Button
+            android:id="@+id/DarkModeButt"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clickable="false"
+            app:layout_constraintBottom_toBottomOf="@+id/LightModeButt"
+            app:layout_constraintEnd_toEndOf="@+id/textView123"
+            app:layout_constraintStart_toStartOf="@+id/textView123"
+            app:layout_constraintTop_toTopOf="@+id/LightModeButt" />
+
+        <SeekBar
+            android:id="@+id/GreenSeekBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:max="255"
+            android:progress="0"
+            android:progressBackgroundTint="#00FF00"
+            android:progressTint="#00FF00"
+            android:secondaryProgressTint="#00FF00"
+            android:thumbTint="#00FF00"
+            app:layout_constraintBottom_toBottomOf="@+id/GreenText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/GreenText"
+            app:layout_constraintTop_toTopOf="@+id/GreenText" />
+
+        <TextView
+            android:id="@+id/textView133"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Green"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/RedText" />
+
+        <TextView
+            android:id="@+id/GreenText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="0"
+            android:textAllCaps="false"
+            android:textColor="#00FF00"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView133" />
+
+        <TextView
+            android:id="@+id/textView142"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/GreenText" />
+
+        <TextView
+            android:id="@+id/textView144"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Red"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/BlueText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="0"
+            android:textColor="#0000FF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView142" />
+
+        <SeekBar
+            android:id="@+id/BlueSeekBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:max="255"
+            android:progress="0"
+            android:progressBackgroundTint="#0000FF"
+            android:progressTint="#0000FF"
+            android:secondaryProgressTint="#0000FF"
+            android:thumbTint="#0000FF"
+            app:layout_constraintBottom_toBottomOf="@+id/BlueText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/BlueText"
+            app:layout_constraintTop_toTopOf="@+id/BlueText" />
+
+        <SeekBar
+            android:id="@+id/RedSeekBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:max="255"
+            android:progress="0"
+            android:progressBackgroundTint="#FF0000"
+            android:progressTint="#FF0000"
+            android:secondaryProgressTint="#FF0000"
+            android:thumbTint="#FF0000"
+            app:layout_constraintBottom_toBottomOf="@+id/RedText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/RedText"
+            app:layout_constraintTop_toTopOf="@+id/RedText" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

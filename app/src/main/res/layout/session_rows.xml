@@ -15,6 +15,7 @@
             android:id="@+id/TitleText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:text="TextView"
             android:textSize="30sp" />
 
@@ -24,6 +25,7 @@
         android:id="@+id/DateText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="TextView"
         android:textSize="24sp" />
 
@@ -31,6 +33,7 @@
         android:id="@+id/BlurbText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="TextView"
         android:textSize="18sp" />
 
@@ -39,7 +42,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="#00FFFFFF"
         android:text="Delete" />
 
     <Space

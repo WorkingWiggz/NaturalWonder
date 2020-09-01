@@ -560,7 +560,7 @@
                     android:id="@+id/radioButton13"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lawful good"
+                    android:text="Lawful Good"
                     android:textColor="?attr/TextColor"
                     android:textSize="18sp" />
 
@@ -568,7 +568,7 @@
                     android:id="@+id/radioButton14"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Neutral good"
+                    android:text="Lawful Neutral"
                     android:textColor="?attr/TextColor"
                     android:textSize="18sp" />
 
@@ -576,7 +576,7 @@
                     android:id="@+id/radioButton15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Chaotic good"
+                    android:text="Lawful Evil"
                     android:textColor="?attr/TextColor"
                     android:textSize="18sp" />
 
@@ -584,7 +584,7 @@
                     android:id="@+id/radioButton16"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lawful neutral"
+                    android:text="Neutral Good"
                     android:textColor="?attr/TextColor"
                     android:textSize="18sp" />
 
@@ -592,7 +592,7 @@
                     android:id="@+id/radioButton17"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="True neutral"
+                    android:text="True Neutral"
                     android:textColor="?attr/TextColor"
                     android:textSize="18sp" />
 
@@ -600,7 +600,7 @@
                     android:id="@+id/radioButton18"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Chaotic neutral"
+                    android:text="Neutral Evil"
                     android:textColor="?attr/TextColor"
                     android:textSize="18sp" />
 
@@ -608,7 +608,7 @@
                     android:id="@+id/radioButton21"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lawful evil"
+                    android:text="Chaotic Good"
                     android:textColor="?attr/TextColor"
                     android:textSize="18sp" />
 
@@ -616,7 +616,7 @@
                     android:id="@+id/radioButton19"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Neutral evil"
+                    android:text="Chaotic Neutral"
                     android:textColor="?attr/TextColor"
                     android:textSize="18sp" />
 

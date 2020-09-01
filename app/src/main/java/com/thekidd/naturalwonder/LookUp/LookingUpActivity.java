@@ -51,17 +51,19 @@ public class LookingUpActivity extends BaseNWActivity {
 
     Button MenuButt;
     ListView listView;
-    String BaseURL = "https://dnd5eapi.co";
+
     String TopMenuString = "/api/?";
     private RequestQueue queue;
     int Itemcount;
+    String TopMenuUrl = "https://www.dnd5eapi.co/graphql?query={__type(name:%22Query%22){fields{name%20CheckType:type{kind}}}}";
     CustomListAdapter toList;
     ArrayList<String> reshold,ItemTypes,MenuItems;
     String Category;
     JSONObject  hold;
-    Boolean TopMenu;
+    Boolean TopMenu = true;
     TextView Title;
-    private boolean SubMenu=false;
+    Boolean SubMenu=false;
+    Boolean Activity = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,43 +81,32 @@ public class LookingUpActivity extends BaseNWActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(TopMenu){
-                    ToSubMenu(position);
+                   ToSubMenu(position);
                 } else if (SubMenu) {
-                    ToItemActivity(position);
+                   ToItemActivity(position);
                 }
             }
         });
 
         //Initializes Menu
+        StringRequest s = new StringRequest(Request.Method.GET, BaseURL + "api/?", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    hold = new JSONObject(response);
+                    processJSON();
+                } catch (Exception e) {
+                    ErrorHandle(e,getApplicationContext());
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
 
-        try {
-            hold = new JSONObject("{\n" +
-                    "\t\"ability-scores\": \"/api/ability-scores\",\n" +
-                    "\t\"classes\": \"/api/classes\",\n" +
-                    "\t\"conditions\": \"/api/conditions\",\n" +
-                    "\t\"damage-types\": \"/api/damage-types\",\n" +
-                    "\t\"equipment-categories\": \"/api/equipment-categories\",\n" +
-                    "\t\"equipment\": \"/api/equipment\",\n" +
-                    "\t\"features\": \"/api/features\",\n" +
-                    "\t\"languages\": \"/api/languages\",\n" +
-                    "\t\"magic-schools\": \"/api/magic-schools\",\n" +
-                    "\t\"monsters\": \"/api/monsters\",\n" +
-                    "\t\"proficiencies\": \"/api/proficiencies\",\n" +
-                    "\t\"races\": \"/api/races\",\n" +
-                    "\t\"skills\": \"/api/skills\",\n" +
-                    "\t\"spellcasting\": \"/api/spellcasting\",\n" +
-                    "\t\"spells\": \"/api/spells\",\n" +
-                    "\t\"starting-equipment\": \"/api/starting-equipment\",\n" +
-                    "\t\"subclasses\": \"/api/subclasses\",\n" +
-                    "\t\"subraces\": \"/api/subraces\",\n" +
-                    "\t\"traits\": \"/api/traits\",\n" +
-                    "\t\"weapon-properties\": \"/api/weapon-properties\"\n" +
-                    "}");
-            processJSON();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+            }
+        });
 
+            HandleRequest(s);
 
         final Intent MenuBack = new Intent(this, MainActivity.class);
 
@@ -125,15 +116,21 @@ public class LookingUpActivity extends BaseNWActivity {
                 if(TopMenu){
                     startActivity(MenuBack);
                 } else if (SubMenu){
-                    ToTopMenu();
+                    try {
+                        ToTopMenu();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        ErrorHandle(e,v.getContext());
+                    }
                 }
             }
         });
     }
 
-    private void ToTopMenu() {
+    private void ToTopMenu() throws JSONException {
         TopMenu = true;
         SubMenu = false;
+        Activity = false;
         MenuButt.setText("Menu");
         GetMenus(TopMenuString,"Main Menu");
     }
@@ -141,6 +138,7 @@ public class LookingUpActivity extends BaseNWActivity {
     private void ToSubMenu(int position) {
         TopMenu = false;
         SubMenu = true;
+        Activity = false;
         MenuButt.setText("Back");
         if (reshold.get(position).contains(" ")){
             String a = reshold.get(position).replace(' ','-').toLowerCase();
@@ -181,67 +179,67 @@ public class LookingUpActivity extends BaseNWActivity {
 
 
 
-    private void GetMenus(String url, final String TitleString){
+    private void GetMenus(String url, final String TitleString) throws JSONException {
         final String s = BaseURL + url;
-
-        Thread t = new Thread(new Runnable() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, s, new Response.Listener<String>() {
             @Override
-            public void run() {
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, s, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            hold = new JSONObject(response);
-                            Title.setText(TitleString);
-                            processJSON();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            ShowError();
+            public void onResponse(String response) {
+                try {
+                    hold = new JSONObject(response);
+                    SaveToLocalBackup(response,s);
+                    Title.setText(TitleString);
+                    processJSON();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    ErrorHandle(e,getApplicationContext());
                 }
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        ShowError();
-                    }
-                });
-                queue.add(stringRequest);
-
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                ShowError();
             }
         });
-        t.start();
+
+
+        if(LocalAPIData.has(url)){
+            try {
+                hold = LocalAPIData.getJSONObject(url);
+            } catch (JSONException e) {
+                e.printStackTrace();
+                ErrorHandle(e,this);
+            }
+            try {
+                processJSON();
+                Title.setText(TitleString);
+            } catch (Exception e) {
+                e.printStackTrace();
+                ErrorHandle(e,this);
+            }
+        } else {
+            HandleRequest(stringRequest);
+        }
+
+
     }
 
-    private void processJSON() throws JSONException {
+    private void processJSON() throws Exception {
        reshold.clear();
-       boolean Item = false ,SubMenu = false;
-
-       if(Objects.requireNonNull(hold.names()).getString(0).contains("_id")){
-           Item = true;
+       if(hold.has("index")){
+           Activity = true;
            SubMenu = false;
-       } else if (Objects.requireNonNull(hold.names()).getString(0).contains("count")){
-           Item = false;
+       } else if (hold.has("count")){
+           Activity = false;
            SubMenu = true;
-       } else {
-           for (int i =0 ;i<hold.names().length();i++) {
-               if(hold.names().getString(i).contains("_id")){
-                   Item = true;
-                   SubMenu = false;
-                   break;
-               } else if(hold.names().getString(i).contains("count")){
-                   Item = false;
-                   SubMenu = true;
-                   break;
-               }
-           }
        }
 
-       if(Item){
+       if(Activity){
             ShowItem();
        } else {
            if(SubMenu){
                boolean u = hold.has("class");
                TopMenu = false;
+               Activity = false;
                if(u){
                    JSONArray a = hold.getJSONArray("results");
                    for(int i = 0; i<a.length();i++){
@@ -268,6 +266,8 @@ public class LookingUpActivity extends BaseNWActivity {
                }
            } else {
                 TopMenu = true;
+                SubMenu = false;
+                Activity = false;
                 MenuItems.clear();
                 if(ItemTypes.size() <= 0){
                     for(int i = 0;i<hold.length();i++){
@@ -389,4 +389,5 @@ public class LookingUpActivity extends BaseNWActivity {
         Intent error = new Intent(this, ErrorPage.class);
         startActivity(error);
     }
+
 }

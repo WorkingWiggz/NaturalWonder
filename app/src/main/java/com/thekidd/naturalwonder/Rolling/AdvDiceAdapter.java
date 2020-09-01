@@ -3,6 +3,7 @@ package com.thekidd.naturalwonder.Rolling;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import com.thekidd.naturalwonder.R;
 
@@ -20,7 +23,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class AdvDiceAdapter extends ArrayAdapter {
     private Activity context;
-    private ArrayList<String> DiceRolling;
+    ArrayList<String> DiceRolling;
     Map<EditText,Integer> Rows = new HashMap<>();
     TextView Total;
 
@@ -49,6 +52,7 @@ public class AdvDiceAdapter extends ArrayAdapter {
         return rowView;
     }
 
+
     private void Roll(EditText resTB, TextView RollParams) {
         String a = RollParams.getText().toString();
         String[] b = a.split("d");
@@ -62,11 +66,7 @@ public class AdvDiceAdapter extends ArrayAdapter {
             }
             result = result + c;
         }
-        if(!Rows.containsKey(resTB)){
-            Rows.put(resTB,result);
-        }else {
-            Rows.replace(resTB,result);
-        }
+        Rows.put(resTB,result);
         String e = result+" ("+d+")";
         resTB.setText(e);
         UpdateTotal();

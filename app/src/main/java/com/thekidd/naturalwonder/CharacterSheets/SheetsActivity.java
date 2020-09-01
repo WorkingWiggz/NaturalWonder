@@ -31,11 +31,18 @@ public class SheetsActivity extends BaseNWActivity {
     ArrayList<String> Names = new ArrayList<>();
     ArrayList<String> Levels = new ArrayList<>();
     ArrayList<String> Charnames = new ArrayList<>();
+    int color;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sheets);
+
+        if(ThemeMode){
+            color = R.color.LightMode_Back;
+        } else {
+            color = R.color.DarkMode_Back;
+        }
 
         MenuButt = findViewById(R.id.MenuButt);
         NewSessButt = findViewById(R.id.NewCharButt);
@@ -101,7 +108,7 @@ public class SheetsActivity extends BaseNWActivity {
                 Paths.add(tmp.getAbsolutePath());
             }
         }
-        CharSheetsAdapter CSA = new CharSheetsAdapter(this,Names,Levels,Classes,Paths);
+        CharSheetsAdapter CSA = new CharSheetsAdapter(this,Names,Levels,Classes,Paths,color);
         CharSheets.setAdapter(CSA);
     }
 }

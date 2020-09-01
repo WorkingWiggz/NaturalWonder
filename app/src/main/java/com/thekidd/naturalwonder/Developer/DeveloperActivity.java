@@ -17,7 +17,7 @@ import com.thekidd.naturalwonder.R;
 public class DeveloperActivity extends BaseNWActivity {
     TextView BrandLink,VersionText;
     String VersionNumber;
-    Button MenuButt;
+    Button MenuButt,SendFeedbackButt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,8 @@ public class DeveloperActivity extends BaseNWActivity {
         BrandLink.setMovementMethod(LinkMovementMethod.getInstance());
         MenuButt = findViewById(R.id.MenuButt);
         VersionText = findViewById(R.id.VersionNum);
-        VersionNumber = "0.1";
+        SendFeedbackButt = findViewById(R.id.SendFeedBackButt);
+        VersionNumber = "0.2";
         VersionText.setText(VersionNumber);
         final Intent MenuBack = new Intent(this, MainActivity.class);
 
@@ -37,5 +38,15 @@ public class DeveloperActivity extends BaseNWActivity {
                 startActivity(MenuBack);
             }
         });
+
+
+        if(SendFeedbackButt != null){
+            SendFeedbackButt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    HandleFeedBack(v.getContext());
+                }
+            });
+        }
     }
 }

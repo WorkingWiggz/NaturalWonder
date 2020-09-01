@@ -3,8 +3,11 @@
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -33,37 +36,47 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.CookieHandler;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 
  public class SetupCharacter extends BaseNWActivity {
     ArrayList<CheckBox> SkillsList = new ArrayList<>();
+    ArrayList<ArrayList<CheckBox>> EquipmentChoices = new ArrayList<>();
     Button RollStats,RandLv,RollHP,FinalChar,Back;
     EditText NameText;
     int SkillLimit = 0;
+    LinearLayout layout;
     int NumOfChoices=-1;
-    RadioGroup Races,Classes, Alignments;
+    int color;
+      RadioGroup Races,Classes, Alignments;
     EditText LVLTB,HPTB,STRTB,WISTB,CHATB,INTTB,CONTB,DEXTB;
     ArrayList<JSONObject> StartEquipData = new ArrayList<>();
-    ArrayList<Integer> RadioPosList = new ArrayList<>();
-    ArrayList<String> AvailableProfs = new ArrayList<>();
-     Thread LoadData;
+    final ArrayList<ArrayList<View>> LLS = new ArrayList<>();
+     ArrayList<String> AvailableProfs = new ArrayList<>();
+    Thread LoadData;
     TextView CET;
     int HitDice;
+    private ArrayList<Integer> ChoiceCount = new ArrayList<>();
 
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup_character);
         HitDice = 0;
-
+        layout = findViewById(R.id.ListLayout);
+        if(ThemeMode){
+             color = getResources().getColor(R.color.LightMode_Text);
+        } else{
+             color = getResources().getColor(R.color.DarkMode_Text);
+        }
         LoadData = new Thread(){
                 public void run(){
                         Context c = SetupCharacter.this;
-                        RequestQueue v = Volley.newRequestQueue(c);
                         StringRequest Barb,Bard,Cleric,Druid,Monk,Fighter,Paladin,Ranger,Rogue,Sorcerer,Warlock,Wizard;
-                        Barb = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/1", new Response.Listener<String>() {
+                        Barb = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/barbarian", new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 try {
@@ -79,7 +92,7 @@ import java.util.concurrent.ThreadLocalRandom;
                             }
                         });
 
-                        Bard = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/2", new Response.Listener<String>() {
+                        Bard = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/bard", new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 try {
@@ -95,7 +108,7 @@ import java.util.concurrent.ThreadLocalRandom;
                             }
                         });
 
-                        Cleric = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/3", new Response.Listener<String>() {
+                        Cleric = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/cleric", new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 try {
@@ -111,7 +124,7 @@ import java.util.concurrent.ThreadLocalRandom;
                             }
                         });
 
-                        Druid = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/4", new Response.Listener<String>() {
+                        Druid = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/druid", new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 try {
@@ -127,7 +140,7 @@ import java.util.concurrent.ThreadLocalRandom;
                             }
                         });
 
-                        Monk = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/5", new Response.Listener<String>() {
+                        Monk = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/fighter", new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 try {
@@ -143,7 +156,7 @@ import java.util.concurrent.ThreadLocalRandom;
                             }
                         });
 
-                        Fighter = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/6", new Response.Listener<String>() {
+                        Fighter = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/monk", new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 try {
@@ -159,7 +172,7 @@ import java.util.concurrent.ThreadLocalRandom;
                             }
                         });
 
-                        Paladin = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/7", new Response.Listener<String>() {
+                        Paladin = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/paladin", new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 try {
@@ -175,7 +188,7 @@ import java.util.concurrent.ThreadLocalRandom;
                             }
                         });
 
-                        Ranger = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/8", new Response.Listener<String>() {
+                        Ranger = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/ranger", new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 try {
@@ -191,7 +204,7 @@ import java.util.concurrent.ThreadLocalRandom;
                             }
                         });
 
-                        Rogue = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/9", new Response.Listener<String>() {
+                        Rogue = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/rogue", new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 try {
@@ -207,7 +220,7 @@ import java.util.concurrent.ThreadLocalRandom;
                             }
                         });
 
-                        Sorcerer = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/10", new Response.Listener<String>() {
+                        Sorcerer = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/sorcerer", new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 try {
@@ -223,7 +236,7 @@ import java.util.concurrent.ThreadLocalRandom;
                             }
                         });
 
-                        Warlock = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/11", new Response.Listener<String>() {
+                        Warlock = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/warlock", new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 try {
@@ -239,7 +252,7 @@ import java.util.concurrent.ThreadLocalRandom;
                             }
                         });
 
-                        Wizard = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/12", new Response.Listener<String>() {
+                        Wizard = new StringRequest(Request.Method.GET, "https://www.dnd5eapi.co/api/starting-equipment/wizard", new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 try {
@@ -255,18 +268,18 @@ import java.util.concurrent.ThreadLocalRandom;
                             }
                         });
 
-                        v.add(Barb);
-                        v.add(Bard);
-                        v.add(Cleric);
-                        v.add(Druid);
-                        v.add(Monk);
-                        v.add(Fighter);
-                        v.add(Paladin);
-                        v.add(Ranger);
-                        v.add(Rogue);
-                        v.add(Sorcerer);
-                        v.add(Warlock);
-                        v.add(Wizard);
+                    HandleRequest(Barb);
+                    HandleRequest(Bard);
+                    HandleRequest(Cleric);
+                    HandleRequest(Druid);
+                    HandleRequest(Monk);
+                    HandleRequest(Fighter);
+                    HandleRequest(Paladin);
+                    HandleRequest(Ranger);
+                    HandleRequest(Rogue);
+                    HandleRequest(Sorcerer);
+                    HandleRequest(Warlock);
+                    HandleRequest(Wizard);
                     }
            };
         LoadData.start();
@@ -406,7 +419,7 @@ import java.util.concurrent.ThreadLocalRandom;
                     LoadProficiencies(a);
                     SetHitDice(a);
                 } catch (Exception e) {
-                    ErrorHandle(e,getApplicationContext());
+                    ErrorHandle(e,group.getContext());
                 }
 
             }
@@ -802,11 +815,10 @@ import java.util.concurrent.ThreadLocalRandom;
 
         //Sixth Section Check
         int validatorcount=0;
-        for(int i =1;i<NumOfChoices+1;i++){
-            ArrayList<View> x = getViewsByTag((LinearLayout)findViewById(R.id.ListLayout),"Choice"+i);
+        for(int i =0;i<EquipmentChoices.size();i++){
             boolean AnyChecked = false;
-            for(int j =0;j<x.size();j++){
-                CheckBox b = (CheckBox)x.get(j);
+            for(int j =0;j<EquipmentChoices.get(i).size();j++){
+                CheckBox b = EquipmentChoices.get(i).get(j);
                 if(b.isChecked()){
                     AnyChecked = true;
                     ChosenEquips.add(b.getText().toString());
@@ -817,7 +829,11 @@ import java.util.concurrent.ThreadLocalRandom;
                 validatorcount++;
             }
         }
-        if(validatorcount == NumOfChoices){
+        int sum = 0;
+        for(int i =0;i<ChoiceCount.size();i++){
+            sum += ChoiceCount.get(i);
+        }
+        if(validatorcount == sum){
             Sixth = true;
         } else {
             Sixth = false;
@@ -993,97 +1009,211 @@ import java.util.concurrent.ThreadLocalRandom;
     }
 
     private void LoadStartEquipment(String ClassString) throws Exception {
-        //TODO Load the Start Equipment for the selected class
         JSONObject Data = FetchStartEquipment(ClassString);
-        JSONArray a = Data.getJSONArray("starting_equipment");
-        String e = "";
-        for(int i = 0; i<a.length();i++){
-            String b = a.getJSONObject(i).getJSONObject("item").getString("name");
-            int c = a.getJSONObject(i).getInt("quantity");
-            String d = c + "x " + b;
-            String NL = System.getProperty("line.separator");
-            if(i==0){
-                e = d + NL;
-            }else {
-                e = e + d + NL;
-            }
-            CET.setText(e);
-        }
-        final LinearLayout layout = findViewById(R.id.ListLayout);
-        layout.removeAllViews();
-        int x = 0;
-        try {
-            x = Data.getInt("choices_to_make");
-            NumOfChoices = x;
-            for(int i = 1; i<x+1; i++){
-                ArrayList<Integer> ChoiceGroup = new ArrayList<>();
-                String s = "choice_" +i;
-                TextView ChoiceText = new TextView(this);
-                String tmp ="Choice "+i+":";
-                ChoiceText.setText(tmp);
-                ChoiceText.setTextSize(25);
-                layout.addView(ChoiceText);
-                Space spacing = new Space(this);
-                spacing.setMinimumHeight(8);
-                layout.addView(spacing);
-                JSONArray ChoiceData = Data.getJSONArray(s);
-                for(int j =0;j<ChoiceData.length();j++){
-                    ChoiceGroup.clear();
-                    int count = ChoiceData.getJSONObject(j).getInt("choose");
-                    JSONArray FromData = ChoiceData.getJSONObject(j).getJSONArray("from");
-                    CheckBox butt;
-                    for(int g = 0;g<FromData.length();g++) {
-                          String ChoiceString = "";
-                          JSONObject itemData =FromData.getJSONObject(g);
-                          for(int h = 0;h<count;h++) {
-                              String name  = itemData.getJSONObject("item").getString("name");
-                              int Quant = FromData.getJSONObject(h).getInt("quantity");
-                              String full = Quant +"x "+name;
-                              if(h == count-1){
-                                  ChoiceString = ChoiceString + full;
-                              } else if(h ==0){
-                                  ChoiceString = full + " , ";
-                              }  else {
-                                  ChoiceString = ChoiceString + full + " , ";
-                              }
-                          }
-                          butt = new CheckBox(this);
-                            if(ThemeMode){
-                                butt.setTextColor(getResources().getColor(R.color.LightMode_Text));
-                            } else {
-                                butt.setTextColor(getResources().getColor(R.color.DarkMode_Text));
-                            }
-                          butt.setTextSize(18f);
-                          butt.setTag("Choice"+i);
-                          butt.setText(ChoiceString);
-                          butt.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    CheckBox r = (CheckBox) v;
-                                    SortChoice(r);
-                                }
-                            });
-                        layout.addView(butt);
-                    }
-                    if(j != ChoiceData.length()-1){
-                        Space spa = new Space(this);
-                        Space spa2= new Space(this);
-                        spa.setMinimumHeight(8);
-                        spa2.setMinimumHeight(8);
-                        TextView Text = new TextView(this);
-                        Text.setText("Or");
-                        Text.setTextSize(20);
-                        Text.setGravity(Gravity.CENTER);
-                        layout.addView(spa);
-                        layout.addView(Text);
-                        layout.addView(spa2);
-                    }
+        if(Data.has("starting_equipment")){
+            JSONArray a = Data.getJSONArray("starting_equipment");
+            String e = "";
+            for(int i = 0; i<a.length();i++){
+                String b = a.getJSONObject(i).getJSONObject("equipment").getString("name");
+                int c = a.getJSONObject(i).getInt("quantity");
+                String d = c + "x " + b;
+                String NL = System.getProperty("line.separator");
+                if(i==0){
+                    e = d + NL;
+                }else {
+                    e = e + d + NL;
                 }
+                CET.setText(e);
+            }
+        }
+
+
+        layout.removeAllViews();
+        EquipmentChoices.clear();
+        ChoiceCount.clear();
+        LLS.clear();
+
+
+        try {
+            if(Data.has("starting_equipment_options")){
+                JSONArray JA = Data.getJSONArray("starting_equipment_options");
+               for(int i =0;i<JA.length();i++){
+                   String Choice = String.format("Choice %d:",(i+1));
+                   ChoiceCount.add(JA.getJSONObject(i).getInt("choose"));
+                   TextView t = new TextView(layout.getContext());
+                   t.setText(Choice);
+                   t.setTextSize(25f);
+                   LLS.add(new ArrayList<View>());
+                   LLS.get(i).add(t);
+                   EquipmentChoices.add(new ArrayList<CheckBox>());
+                   JSONObject TmpA = null;
+                   JSONArray TmpB = new JSONArray();
+                   try{
+                       TmpB = JA.getJSONObject(i).getJSONArray("from");
+                   } catch (Exception e){
+                       TmpA = JA.getJSONObject(i).getJSONObject("from");
+                   }
+                   if(TmpA != null){
+                       HandleAsEquipmentOption(TmpA,i);
+                   } else {
+                       for(int j =0;j<TmpB.length();j++){
+                           JSONArray TmpC; 
+                           try{
+                               if(TmpB.getJSONObject(j).has("equipment")){
+                                   HandleAsEquipment(TmpB.getJSONObject(j),i);
+                               } else {
+                                   HandleAsEquipmentOption(TmpB.getJSONObject(j),i);
+                               }
+                           } catch(JSONException e){
+                               TmpC = TmpB.getJSONArray(j);
+                               HandleAsComboEquipment(TmpC,i);
+                           }
+                       }
+                   }
+               }
+
             }
         } catch (JSONException ex) {
             ex.printStackTrace();
+            ErrorHandle(ex,this);
         }
  }
+
+     private void HandleAsComboEquipment(JSONArray tmpC, int Choicepos) throws JSONException {
+         String Fullname = "";
+         for(int i =0;i < tmpC.length();i++){
+             JSONObject JO = tmpC.getJSONObject(i);
+             int quantity;
+             if( JO.has("quantity")){
+                quantity = JO.getInt("quantity");
+             } else {
+                 quantity = 1;
+             }
+             String s ="";
+             if(JO.has("equipment")){
+                 s = quantity + " x " + JO.getJSONObject("equipment").getString("name");
+             } else {
+                 HandleAsEquipmentOption(JO,Choicepos);
+             }
+                 if(i == JO.length() -1){
+                     Fullname += s;
+                 } else {
+                     Fullname += s + "\n";
+                 }
+         }
+         LLS.get(Choicepos).add(BuildCheckBox(Fullname,Choicepos));
+     }
+
+     private void HandleAsEquipment(JSONObject jsonObject, int Choicepos) throws JSONException{
+         int qauntity;
+         if(jsonObject.has("quantity")){
+             qauntity = jsonObject.getInt("quantity");
+         } else {
+             qauntity = 1;
+         }
+         String s = qauntity + " x " + jsonObject.getJSONObject("equipment").getString("name");
+         LLS.get(Choicepos).add(BuildCheckBox(s,Choicepos));
+     }
+
+     private void HandleAsEquipmentOption(JSONObject tmpA, final int Choicepos) throws JSONException {
+         JSONObject JO = new JSONObject();
+         if(tmpA.has("equipment_option")){
+             if(tmpA.getJSONObject("equipment_option").getJSONObject("from").has("equipment_category")){
+                 JO = tmpA.getJSONObject("equipment_option").getJSONObject("from").getJSONObject("equipment_category");
+             } else {
+                 JO = tmpA.getJSONObject("equipment_option").getJSONObject("from");
+             }
+         } else if (tmpA.has("from")){
+             JO = tmpA.getJSONObject("from").getJSONObject("equipment_category");
+         } else {
+            JO = tmpA.getJSONObject("equipment_category");
+         }
+         StringRequest str = new StringRequest(Request.Method.GET, BaseURL + JO.getString("url"), new Response.Listener<String>() {
+             @Override
+             public void onResponse(String response) {
+                 try {
+                     JSONObject hold = new JSONObject(response);
+                     for(int i =0;i<hold.getJSONArray("equipment").length();i++ ){
+                         String Name= "1 x " + hold.getJSONArray("equipment").getJSONObject(i).optString("name");
+                         LLS.get(Choicepos).add(BuildCheckBox(Name,Choicepos));
+                     }
+                     AddToLayout();
+                 } catch (Exception e){
+                     e.printStackTrace();
+                     ErrorHandle(e,layout.getContext());
+                 }
+
+             }
+         }, new Response.ErrorListener() {
+             @Override
+             public void onErrorResponse(VolleyError error) {
+
+             }
+         });
+         HandleRequest(str);
+     }
+
+     private CheckBox BuildCheckBox(String name,int pos) {
+         CheckBox tmp = new CheckBox(layout.getContext());
+         tmp.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 boolean hold = EquipmentCheck((CheckBox) v);
+                 if(!hold){
+                     CheckBox a = (CheckBox) v;
+                     a.setChecked(false);
+                 }
+             }
+         });
+         tmp.setText(name);
+         tmp.setTextSize(18f);
+         tmp.setTextColor(color);
+         EquipmentChoices.get(pos).add(tmp);
+         return tmp;
+     }
+
+     private void AddToLayout(){
+        for(int i =0;i< LLS.size();i++){
+            for (int k = 0; k < LLS.get(i).size(); k++) {
+                boolean Doesntexist = true;
+                for(int x = 0;x<layout.getChildCount();x++){
+                    if(layout.getChildAt(x) == LLS.get(i).get(k)){
+                        Doesntexist =false;
+                    }
+                }
+                if(Doesntexist){
+                    layout.addView(LLS.get(i).get(k));
+                }
+
+            }
+            Space s = new Space(layout.getContext());
+            s.setMinimumHeight(16);
+            layout.addView(s);
+        }
+    }
+
+     private boolean EquipmentCheck(CheckBox v) {
+         boolean AbleToChoose = true;
+         for(int ec =0; ec<EquipmentChoices.size();ec++){
+             if(EquipmentChoices.get(ec).contains(v)){
+                 int counter =0;
+                 ArrayList List = EquipmentChoices.get(ec);
+                 for(int ecL = 0;ecL < List.size();ecL++){
+                     CheckBox tmpCheckbox = (CheckBox) List.get(ecL);
+                     if(tmpCheckbox.isChecked()){
+                         counter++;
+                     }
+                 }
+                 if(counter > ChoiceCount.get(ec) ){
+                     Toast TooMuchEquipment = Toast.makeText(getApplicationContext(),String.format("Too many pieces of equipment. You are limited to %d selection for this choice.",ChoiceCount.get(ec)),Toast.LENGTH_SHORT);
+                     AbleToChoose = false;
+                     TooMuchEquipment.show();
+                 }
+             }
+
+         }
+         return AbleToChoose;
+     }
 
      private void SortChoice(CheckBox r) {
        LinearLayout c = findViewById(R.id.ListLayout);

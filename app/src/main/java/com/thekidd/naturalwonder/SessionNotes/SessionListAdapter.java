@@ -15,6 +15,8 @@ import com.thekidd.naturalwonder.R;
 import java.io.File;
 import java.util.ArrayList;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class SessionListAdapter extends ArrayAdapter {
 
     private ArrayList<File> Dirs;
@@ -41,14 +43,18 @@ public class SessionListAdapter extends ArrayAdapter {
         Title.setText(Titles.get(pos));
         Blurb.setText(Blurbs.get(pos));
         Date.setText(Dates.get(pos));
-
+        final int color;
+        if(R.style.MainAppTheme_Light == getContext().getSharedPreferences("NWSharedPrefs",MODE_PRIVATE).getInt("theme",R.style.MainAppTheme_Light)){
+            color = R.color.LightMode_Back;
+        } else {
+            color = R.color.DarkMode_Back;
+        }
         Button DeleteButt = rowView.findViewById(R.id.DeleButt);
         DeleteButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final boolean[] Confirm = {false};
                 AlertDialog.Builder SaveDiagB = new AlertDialog.Builder(rowView.getContext());
-                SaveDiagB.setMessage("Do you want to delete this session?");
+                SaveDiagB.setMessage("Are you sure want to delete this session? This cannot be undone.");
                 SaveDiagB.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -63,8 +69,8 @@ public class SessionListAdapter extends ArrayAdapter {
                     }
                 });
                 AlertDialog SD = SaveDiagB.create();
+                SD.getWindow().setBackgroundDrawableResource(color);
                 SD.show();
-
             }
         });
 

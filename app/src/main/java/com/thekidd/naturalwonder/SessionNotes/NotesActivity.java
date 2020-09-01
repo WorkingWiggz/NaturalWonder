@@ -42,6 +42,7 @@ public class NotesActivity extends BaseNWActivity {
             FetchSessions();
         } catch (IOException e) {
             e.printStackTrace();
+            ErrorHandle(e,this);
         }
 
         final Intent MenuBack = new Intent(this, MainActivity.class);
@@ -93,7 +94,7 @@ public class NotesActivity extends BaseNWActivity {
                for(int j =0;j<d.length;j++){
                    char f = d[j];
                    if(j>=150 && f ==' '){
-                       if(d.length >= 150){
+                       if(d.length >= 100){
                            e=e+"...";
                            break;
                        }
@@ -107,6 +108,7 @@ public class NotesActivity extends BaseNWActivity {
                Blurbs.add(blurb);
                Dates.add(Date);
             }
+
             SessionListAdapter SLA = new SessionListAdapter(this,Titles,Blurbs,Dates,A);
             Sessions.setAdapter(SLA);
         }

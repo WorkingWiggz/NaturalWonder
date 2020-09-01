@@ -129,40 +129,40 @@ public class CharacterSheetsEditor extends BaseNWActivity {
                     Race.setText(Data.getString("Race"));
                     int Lvl = Data.getInt("Level");
 
-                    if(Data.getString("Class") == "Barbarian"){
+                    if(Data.getString("Class").equals("Barbarian")){
                         StrSave = true;
                         ConSave = true;
-                    } else if (Data.getString("Class") == "Bard"){
+                    } else if (Data.getString("Class").equals("Bard")){
                         DexSave = true;
                         ChaSave = true;
-                    } else if (Data.getString("Class") == "Cleric"){
+                    } else if (Data.getString("Class").equals("Cleric")){
                         WisSave = true;
                         ChaSave = true;
-                    } else if (Data.getString("Class") == "Druid"){
+                    } else if (Data.getString("Class").equals("Druid")){
                         IntSave = true;
                         WisSave = true;
-                    } else if (Data.getString("Class") == "Fighter"){
+                    } else if (Data.getString("Class").equals("Fighter")){
                         StrSave = true;
                         ConSave = true;
-                    } else if (Data.getString("Class") == "Monk"){
+                    } else if (Data.getString("Class").equals("Monk")){
                         StrSave = true;
                         DexSave = true;
-                    } else if (Data.getString("Class") == "Paladin"){
+                    } else if (Data.getString("Class").equals("Paladin")){
                         WisSave = true;
                         ChaSave = true;
-                    } else if (Data.getString("Class") == "Ranger"){
+                    } else if (Data.getString("Class").equals("Ranger")){
                         StrSave = true;
                         DexSave = true;
-                    } else if (Data.getString("Class") == "Rogue"){
+                    } else if (Data.getString("Class").equals("Rogue")){
                         DexSave = true;
                         IntSave = true;
-                    } else if (Data.getString("Class") == "Sorcerer"){
+                    } else if (Data.getString("Class").equals("Sorcerer")){
                         ConSave = true;
                         ChaSave = true;
-                    } else if (Data.getString("Class") == "Warlock"){
+                    } else if (Data.getString("Class").equals("Warlock")){
                         WisSave = true;
                         ChaSave = true;
-                    } else if (Data.getString("Class") == "Wizard"){
+                    } else if (Data.getString("Class").equals("Wizard")){
                         IntSave = true;
                         WisSave = true;
                     }

@@ -35,6 +35,7 @@ public class SessionEditor extends BaseNWActivity {
     boolean tFirst = true;
     boolean mFirst = true;
     boolean Loaded = false;
+    private boolean ToSave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,7 @@ public class SessionEditor extends BaseNWActivity {
                 LoadedFile = new File(getIntent().getStringExtra("FilePath"));
             }
             Loaded = true;
-
+            Saved = true;
         }
 
 
@@ -67,13 +68,6 @@ public class SessionEditor extends BaseNWActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 Saved = false;
-                if(tFirst){
-                    tFirst = false;
-                    String a = TitleText.getText().toString();
-                    String b =  a.replace(BaseTitle,"");
-                    TitleText.setText(b.toUpperCase());
-                    TitleText.setSelection(TitleText.getText().length());
-                }
             }
 
             @Override
@@ -90,13 +84,6 @@ public class SessionEditor extends BaseNWActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 Saved = false;
-                if(mFirst){
-                     mFirst = false;
-                    String a = MainBodyText.getText().toString();
-                    String b = a.replace(BaseMain,"");
-                    MainBodyText.setText(b.toUpperCase());
-                    MainBodyText.setSelection(MainBodyText.getText().length());
-                }
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -126,37 +113,45 @@ public class SessionEditor extends BaseNWActivity {
     }
 
     public void BackToEditor() throws IOException {
-        Intent i = new Intent(this, NotesActivity.class);
+        final Intent i = new Intent(this, NotesActivity.class);
         if(Saved){
             startActivity(i);
         } else {
-           Boolean hold = NotSavedDialog();
-           if(hold){
-                SaveSession();
-                startActivity(i);
-           } else{
-               startActivity(i);
-           }
+           NotSavedDialog(i);
         }
     }
 
-    private boolean NotSavedDialog() {
+    private boolean NotSavedDialog(final Intent i) {
         final boolean[] hold = {false};
+
+        final int color;
+        if(ThemeMode){
+            color = R.color.LightMode_Back;
+        } else {
+            color = R.color.DarkMode_Back;
+        }
         AlertDialog.Builder SaveDiagB = new AlertDialog.Builder(this);
         SaveDiagB.setMessage("Do you want to save this session?");
         SaveDiagB.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                hold[0] = true;
+                try {
+                    SaveSession();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                startActivity(i);
             }
         });
         SaveDiagB.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 hold[0] = false;
+                startActivity(i);
             }
         });
         AlertDialog SD = SaveDiagB.create();
+        SD.getWindow().setBackgroundDrawableResource(color);
         SD.show();
         return hold[0];
     }
@@ -189,21 +184,22 @@ public class SessionEditor extends BaseNWActivity {
                    String title = TitleText.getText().toString();
                    String core = title + "_" + date;
                    String name = core + ".txt";
-                   File f = new File(dir, name);
-                   boolean pop = false;
+                   File f = new File(dir,name);
                    if (!f.exists()) {
-                       pop = f.createNewFile();
+                       f.createNewFile();
                        FileWriter fw = new FileWriter(f);
                        fw.write(MainBodyText.getText().toString());
                        fw.flush();
                        fw.close();
                    }
+
                } catch (Exception e) {
                    e.printStackTrace();
+                   ErrorHandle(e,this);
                }
            }
        }
-        Saved = true;
+       Saved = true;
        BackToEditor();
     }
 

@@ -18,6 +18,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.thekidd.naturalwonder.CharacterSheets.SheetsActivity;
 import com.thekidd.naturalwonder.Developer.DeveloperActivity;
 import com.thekidd.naturalwonder.LookUp.LookingUpActivity;
@@ -34,18 +39,24 @@ public class MainActivity extends BaseNWActivity {
     Button Settings,Lookup,Developer,Sheets,Rolling,Notes;
     RequestQueue queue;
     JSONObject hold;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         CheckPerms();
+        LoadBackUpData();
+
+
+        queue = Volley.newRequestQueue(getApplicationContext());
         Settings = findViewById(R.id.SettButt);
         Lookup = findViewById(R.id.LookButt);
         Developer = findViewById(R.id.DevButt);
         Sheets = findViewById(R.id.SheetButt);
         Rolling = findViewById(R.id.RollStatsButt);
         Notes = findViewById(R.id.SessButt);
+
 
 
 
@@ -96,8 +107,6 @@ public class MainActivity extends BaseNWActivity {
                 startActivity(N);
             }
         });
-
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -119,5 +128,8 @@ public class MainActivity extends BaseNWActivity {
         }
 
     }
+
+
+
 
 }

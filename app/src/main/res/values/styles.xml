@@ -27,11 +27,13 @@
 
         <item name="itemicontint"> @color/LightMode_Back </item>
         <item name="itemiconback"> @color/LightMode_ButtonBack </item>
+        <item name="colorControlActivated">@color/LightMode_Back</item>
 
         <item name="buttonimagetint"> @color/LightMode_ButtonBack </item>
         <item name="buttonimageback"> @color/LightMode_Back </item>
 
         <item name="TextColor">@color/LightMode_Text</item>
+        <item name="TextColorHint"> @color/Hint </item>
         <item name="AppBackground">@color/LightMode_ButtonBack</item>
         <item name="AppAccent">@color/LightMode_Back</item>
 
@@ -49,11 +51,13 @@
 
         <item name="itemicontint"> @color/LightMode_ButtonBack </item>
         <item name="itemiconback">  @color/DarkMode_Back </item>
+        <item name="colorControlActivated">@color/DarkMode_Back</item>
 
         <item name="buttonimagetint"> @color/LightMode_ButtonBack </item>
         <item name="buttonimageback"> @color/DarkMode_Back </item>
 
         <item name="TextColor">@color/DarkMode_Text</item>
+        <item name="TextColorHint"> @color/Hint </item>
         <item name="AppBackground">@color/DarkMode_ButtonBack</item>
         <item name="AppAccent">@color/DarkMode_Back</item>
 

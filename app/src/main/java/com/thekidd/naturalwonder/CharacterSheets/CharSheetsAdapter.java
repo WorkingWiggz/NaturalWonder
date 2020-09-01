@@ -25,15 +25,17 @@ public class CharSheetsAdapter extends ArrayAdapter {
     ArrayList<String> ClassList;
     ArrayList<String> CharSheet;
     Activity context;
+    int color;
 
 
-    public CharSheetsAdapter(Activity context, ArrayList<String> NameList, ArrayList<Integer> LevelList, ArrayList<String> ClassList, ArrayList<String> CharSheet){
+    public CharSheetsAdapter(Activity context, ArrayList<String> NameList, ArrayList<Integer> LevelList, ArrayList<String> ClassList, ArrayList<String> CharSheet,int color){
         super(context, R.layout.charsheet_row,NameList);
             this.context = context;
             this.NameList = NameList;
             this.LevelList = LevelList;
             this.CharSheet = CharSheet;
             this.ClassList = ClassList;
+            this.color = color;
     }
 
     public View getView(final int pos, final View view, ViewGroup parent){
@@ -51,8 +53,8 @@ public class CharSheetsAdapter extends ArrayAdapter {
         DeleteButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder SaveDiagB = new AlertDialog.Builder(rowView.getContext());
-                SaveDiagB.setMessage("Do you want to delete this session?");
+                AlertDialog.Builder SaveDiagB = new AlertDialog.Builder(context);
+                SaveDiagB.setMessage("Are you sure want to delete this character sheet? This cannot be undone.");
                 SaveDiagB.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -67,6 +69,7 @@ public class CharSheetsAdapter extends ArrayAdapter {
                     }
                 });
                 AlertDialog SD = SaveDiagB.create();
+                SD.getWindow().setBackgroundDrawableResource(color);
                 SD.show();
             }
         });

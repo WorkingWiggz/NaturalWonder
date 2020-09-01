@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.thekidd.naturalwonder.R;
 import com.thekidd.naturalwonder.RolingBaseNW;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -68,7 +69,7 @@ public class SimpleRolling extends RollFragBase {
             public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
 
                 AlertDialog.Builder ConfirmDialog = new AlertDialog.Builder(getContext());
-                ConfirmDialog.setMessage("You sure you want to remove this dice set?");
+                ConfirmDialog.setMessage(String.format("Are you sure you want to delete this dice set? (%s)",ADA.DiceRolling.get(position)));
                 ConfirmDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -90,9 +91,6 @@ public class SimpleRolling extends RollFragBase {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Add Dice Quantity and Dice Type");
         final View customLayout = inflater.inflate(R.layout.customdialog,null);
-
-
-
         builder.setView(customLayout);
         builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
             @Override
