@@ -1,7 +1,6 @@
 package com.thekidd.naturalwonder;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -12,17 +11,8 @@ import android.widget.Button;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.thekidd.naturalwonder.CharacterSheets.SheetsActivity;
 import com.thekidd.naturalwonder.Developer.DeveloperActivity;
 import com.thekidd.naturalwonder.LookUp.LookingUpActivity;
@@ -30,7 +20,6 @@ import com.thekidd.naturalwonder.Rolling.RollingActivity;
 import com.thekidd.naturalwonder.SessionNotes.NotesActivity;
 import com.thekidd.naturalwonder.Settings.SettingsActivity;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;

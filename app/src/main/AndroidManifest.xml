@@ -8,20 +8,21 @@
 
     <application
         android:allowBackup="false"
-        android:networkSecurityConfig="@xml/network_security_config"
         android:icon="@mipmap/blackicon_launcher"
         android:label="Natural Wonder"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/blackicon_launcher"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/MainAppTheme.Light"
-        android:screenOrientation="portrait">
-
+        android:theme="@style/MainAppTheme.Light">
+        <activity android:name=".LookUp.ItemActivities.RuleSections"></activity>
+        <activity android:name=".LookUp.ItemActivities.Rules" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-1704394186122580~8096777052"/>
+            android:value="ca-app-pub-1704394186122580~8096777052" />
 
-        <activity android:name=".Rolling.RollingActivity"/>
+        <activity android:name=".Rolling.RollingActivity" />
         <activity android:name=".CharacterSheets.CharacterSheetsEditor" />
         <activity android:name=".CharacterSheets.SetupCharacter" />
         <activity android:name=".ErrorPage" />

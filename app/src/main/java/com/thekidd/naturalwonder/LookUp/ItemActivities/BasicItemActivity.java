@@ -22,6 +22,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -32,6 +34,8 @@ public class BasicItemActivity extends BaseNWActivity {
     ArrayList<String> JSONData = new ArrayList<>();
     ArrayList<String> ActivityList = new ArrayList();
     int CurrentPageCount;
+    String Cat;
+    String ItemSelected;
     Class<?> PreviousActivity;
     JSONObject hold;
     ArrayList<String> TopMenu = new ArrayList<>();
@@ -46,7 +50,9 @@ public class BasicItemActivity extends BaseNWActivity {
             if(getIntent().getBooleanExtra("Init",false)){
                 JSONData.clear();
                 ActivityList.clear();
-                ItemData = new JSONObject(getIntent().getStringExtra("ItemData"));
+                Cat = getIntent().getStringExtra("ItemCategory");
+                ItemSelected = getIntent().getStringExtra("SelectedItem");
+                SortItemData();
                 ActivityList.add(getIntent().getStringExtra("PreviousActivity"));
                 PreviousActivity = Class.forName(getIntent().getStringExtra("PreviousActivity"));
             } else {
@@ -59,6 +65,33 @@ public class BasicItemActivity extends BaseNWActivity {
         }
     }
 
+    private void SortItemData() throws UnsupportedEncodingException, JSONException {
+        String query = "{"+Cat+"(filter:{full_name:\""+ItemSelected+"\"}){name}}";
+        String URL = BaseURL + "/graphql?query="+ URLEncoder.encode(query, "UTF-8");
+        StringRequest sr = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject shaver = new JSONObject(response);
+                    ItemData = shaver.getJSONObject("data").getJSONObject(Cat);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    ErrorHandle(e,getApplicationContext());
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                ErrorHandle(error,getApplicationContext());
+            }
+        });
+
+        JSONObject a = HandleRequest(sr,queue);
+        if(!(a == null)){
+            ItemData = a;
+        }
+    }
 
 
     public void GetItem(final String url){

@@ -5,36 +5,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.jar.JarInputStream;
+import java.util.LinkedHashMap;
 
 import de.cketti.mailto.EmailIntentBuilder;
 
@@ -43,8 +32,6 @@ public class BaseNWActivity extends Activity {
    protected Boolean ThemeMode;
    protected String BaseURL = "https://dnd5eapi.co";
    protected RequestQueue queue;
-   protected JSONObject RequestData = new JSONObject();
-   protected ArrayList<StringRequest> UniqueRequests = new ArrayList<>();
    protected JSONObject LocalAPIData = new JSONObject();
 
     protected void LoadBackUpData()  {
@@ -55,7 +42,7 @@ public class BaseNWActivity extends Activity {
             if(!dir.exists()){
                 dir.mkdir();
             }
-            File localDateFile = new File(dir,"BackupData.JSON");
+            File localDateFile = new File(dir,"/BackupData.JSON");
             if(!localDateFile.exists()){
                 localDateFile.createNewFile();
             } else {
@@ -78,11 +65,20 @@ public class BaseNWActivity extends Activity {
             if(!dir.exists()){
                 dir.mkdir();
             }
-            File localDateFile = new File(dir + "BackupData.JSON");
+            File localDateFile = new File(dir + "/BackupData.JSON");
             if(localDateFile.exists()){
                 FileWriter fw = new FileWriter(localDateFile);
-                fw.write(LocalAPIData.toString());
-                fw.close();
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write(LocalAPIData.toString());
+                bw.newLine();
+                bw.close();
+            } else {
+                localDateFile.createNewFile();
+                FileWriter fw = new FileWriter(localDateFile);
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write(LocalAPIData.toString());
+                bw.newLine();
+                bw.close();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -109,7 +105,6 @@ public class BaseNWActivity extends Activity {
         Intent i = new Intent(c,ErrorPage.class);
         error.printStackTrace();
         i.putExtra("ErrorMSG",error.toString());
-        i.putExtra("ErrorPage",c.getClass().toString().split(" ")[1].split(".naturalwonder.")[1]);
         startActivity(i);
     }
 
@@ -131,20 +126,24 @@ public class BaseNWActivity extends Activity {
         return views;
     }
 
-    protected void HandleRequest (final StringRequest SR) {
-        Thread t = new Thread() {
-            @Override
-            public void run() {
-                queue.add(SR);
+    protected JSONObject HandleRequest(final StringRequest SR, RequestQueue queue) throws JSONException {
+
+        if(LocalAPIData.has(SR.getUrl())){
+            JSONObject DataObject = LocalAPIData.getJSONObject(SR.getUrl());
+            return  DataObject;
+        } else {
+            queue.add(SR);
+            return null;
         }
-        };
-        t.run();
+
     }
 
-    protected void SaveToLocalBackup(String response, String url) throws JSONException {
+
+    protected void SaveToLocalBackup(String url, JSONObject data) throws JSONException {
         if(!LocalAPIData.has(url)){
-            LocalAPIData.put(url,new JSONObject(response));
+            LocalAPIData.put(url,data);
         }
+
     }
 
     @Override

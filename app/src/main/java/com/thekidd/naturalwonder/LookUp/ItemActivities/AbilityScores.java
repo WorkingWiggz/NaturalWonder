@@ -35,45 +35,59 @@ public class AbilityScores extends BasicItemActivity {
         MenuButtonHandle(MenuButt);
         Skills =  findViewById(R.id.SkillsList);
 
-        try {
-            ShortName.setText(ItemData.getString("name"));
-            FullName.setText(ItemData.getString("full_name"));
-            JSONArray desc = ItemData.getJSONArray("desc");
-            String b="";
-            String NL =System.getProperty("line.separator");
-            for(int i = 0;i<desc.length();i++){
-               String a = desc.getString(i);
-               if(i>0){
-                   b = b+NL+NL+a;
-               }else {
-                   b = a;
-               }
-            }
-            DescText.setText(b);
-            String c = "Related skills:";
-            SkillsTitle.setText(c);
-            final JSONArray skills = ItemData.getJSONArray("skills");
-            final ArrayList<String> SkillName = new ArrayList<String>();
-            for(int i =0;i<skills.length();i++){
-                JSONObject a =skills.getJSONObject(i);
-                SkillName.add(a.getString("name"));
-            }
-            ToListAdapter = new CustomListAdapter(this,SkillName);
-            Skills.setAdapter(ToListAdapter);
-            Skills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    OnClickHandleList(skills,position);
+
+        Thread t = new Thread() {
+            @Override
+            public void run() {
+                while (true){
+                    if(ItemData != null){
+                        try {
+                            SortDataToItems();
+                        } catch (JSONException e) {
+                            ErrorHandle(e,getApplicationContext());
+                        }
+                        break;
+                    }
                 }
-            });
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-            ErrorHandle(e,this);
-        }
-
+            }
+        };
+        t.start();
         BackButt = findViewById(R.id.BackButt);
         SortBackButt(BackButt);
 
         }
+
+    private void SortDataToItems() throws JSONException {
+        ShortName.setText(ItemData.getString("name"));
+        FullName.setText(ItemData.getString("full_name"));
+        JSONArray desc = ItemData.getJSONArray("desc");
+        String b="";
+        String NL =System.getProperty("line.separator");
+        for(int i = 0;i<desc.length();i++){
+            String a = desc.getString(i);
+            if(i>0){
+                b = b+NL+NL+a;
+            }else {
+                b = a;
+            }
+        }
+        DescText.setText(b);
+        String c = "Related skills:";
+        SkillsTitle.setText(c);
+        final JSONArray skills = ItemData.getJSONArray("skills");
+        final ArrayList<String> SkillName = new ArrayList<String>();
+        for(int i =0;i<skills.length();i++){
+            JSONObject a =skills.getJSONObject(i);
+            SkillName.add(a.getString("name"));
+        }
+        ToListAdapter = new CustomListAdapter(this,SkillName);
+        Skills.setAdapter(ToListAdapter);
+        Skills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                OnClickHandleList(skills,position);
+            }
+        });
+
     }
+}

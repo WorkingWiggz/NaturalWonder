@@ -1,15 +1,9 @@
  package com.thekidd.naturalwonder.CharacterSheets;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Layout;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -21,11 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.thekidd.naturalwonder.BaseNWActivity;
 import com.thekidd.naturalwonder.R;
 
@@ -36,11 +28,8 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.CookieHandler;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.TimeUnit;
 
  public class SetupCharacter extends BaseNWActivity {
     ArrayList<CheckBox> SkillsList = new ArrayList<>();
@@ -268,18 +257,23 @@ import java.util.concurrent.TimeUnit;
                             }
                         });
 
-                    HandleRequest(Barb);
-                    HandleRequest(Bard);
-                    HandleRequest(Cleric);
-                    HandleRequest(Druid);
-                    HandleRequest(Monk);
-                    HandleRequest(Fighter);
-                    HandleRequest(Paladin);
-                    HandleRequest(Ranger);
-                    HandleRequest(Rogue);
-                    HandleRequest(Sorcerer);
-                    HandleRequest(Warlock);
-                    HandleRequest(Wizard);
+                    try {
+                        HandleRequest(Barb, queue);
+                        HandleRequest(Bard, queue);
+                        HandleRequest(Cleric, queue);
+                        HandleRequest(Druid, queue);
+                        HandleRequest(Monk, queue);
+                        HandleRequest(Fighter, queue);
+                        HandleRequest(Paladin, queue);
+                        HandleRequest(Ranger, queue);
+                        HandleRequest(Rogue, queue);
+                        HandleRequest(Sorcerer, queue);
+                        HandleRequest(Warlock, queue);
+                        HandleRequest(Wizard, queue);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        ErrorHandle(e,getParent());
+                    }
                     }
            };
         LoadData.start();
@@ -1150,7 +1144,7 @@ import java.util.concurrent.TimeUnit;
 
              }
          });
-         HandleRequest(str);
+         HandleRequest(str, queue);
      }
 
      private CheckBox BuildCheckBox(String name,int pos) {
