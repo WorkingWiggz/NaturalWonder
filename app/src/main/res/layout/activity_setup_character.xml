@@ -69,7 +69,7 @@
                     android:id="@+id/radioButton24"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:clickable="false"
+                    android:clickable="true"
                     android:text="Elf"
                     android:textColor="?attr/TextColor"
                     android:textSize="18sp" />
@@ -445,7 +445,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="5. Describe Your Character"
                 android:textColor="?attr/TextColor"
@@ -468,54 +468,30 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/AlignmentGroup" />
-
-            <TextView
-                android:id="@+id/textView46"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:text="Class Level"
-                android:textColor="?attr/TextColor"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/space15" />
-
-            <EditText
-                android:id="@+id/LevelTextBox"
-                android:layout_width="70dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="16dp"
-                android:ems="10"
-                android:inputType="number"
-                android:textColor="?attr/TextColor"
-                app:layout_constraintBottom_toBottomOf="@+id/textView46"
-                app:layout_constraintStart_toEndOf="@+id/textView46"
-                app:layout_constraintTop_toTopOf="@+id/textView46" />
+                app:layout_constraintTop_toBottomOf="@+id/LifeStyleGroup" />
 
             <TextView
                 android:id="@+id/textView38"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="16dp"
                 android:text="Hit Points"
                 android:textColor="?attr/TextColor"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView46" />
+                app:layout_constraintTop_toBottomOf="@+id/space15" />
 
             <EditText
                 android:id="@+id/HitPointTextBox"
                 android:layout_width="70dp"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:ems="10"
                 android:inputType="number"
                 android:textColor="?attr/TextColor"
                 app:layout_constraintBottom_toBottomOf="@+id/textView38"
-                app:layout_constraintEnd_toEndOf="@+id/LevelTextBox"
-                app:layout_constraintStart_toStartOf="@+id/LevelTextBox"
+                app:layout_constraintStart_toEndOf="@+id/textView38"
                 app:layout_constraintTop_toTopOf="@+id/textView38" />
 
             <Button
@@ -531,19 +507,6 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline56"
                 app:layout_constraintTop_toTopOf="@+id/HitPointTextBox" />
-
-            <Button
-                android:id="@+id/RandomLvlButt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:text="Random"
-                android:textColor="?attr/TextColor"
-                app:layout_constraintBottom_toBottomOf="@+id/LevelTextBox"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/guideline56"
-                app:layout_constraintTop_toTopOf="@+id/LevelTextBox" />
 
             <RadioGroup
                 android:id="@+id/AlignmentGroup"
@@ -691,13 +654,14 @@
 
             <TextView
                 android:id="@+id/ClassEquipText"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:textAlignment="center"
                 android:textColor="?attr/TextColor"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -1049,6 +1013,88 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/HitPointTextBox" />
 
+            <RadioGroup
+                android:id="@+id/LifeStyleGroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView146">
+
+                <RadioButton
+                    android:id="@+id/WretchedRadioButt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Wretched"
+                    android:textColor="?attr/TextColor"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/SqualidRadioButt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Squalid"
+                    android:textColor="?attr/TextColor"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/PoorRadio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Poor"
+                    android:textColor="?attr/TextColor"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/ModestRadio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Modest"
+                    android:textColor="?attr/TextColor"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/ComfortableRadio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Comfortable"
+                    android:textColor="?attr/TextColor"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/WealthyRadio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Wealthy"
+                    android:textColor="?attr/TextColor"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/AristocraticRadio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Aristocratic"
+                    android:textColor="?attr/TextColor"
+                    android:textSize="18sp" />
+            </RadioGroup>
+
+
+            <TextView
+                android:id="@+id/textView146"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Choose LifeStyle: "
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/AlignmentGroup" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
@@ -1058,7 +1104,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="Back"
@@ -1074,6 +1120,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.92" />
+        app:layout_constraintGuide_percent="0.9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

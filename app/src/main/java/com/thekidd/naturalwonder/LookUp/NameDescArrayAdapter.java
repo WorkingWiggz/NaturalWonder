@@ -13,20 +13,21 @@ import java.util.ArrayList;
 
 public class NameDescArrayAdapter extends ArrayAdapter {
 
-    private Activity context;
-    private ArrayList<String> queryNames,queryDescs;
+    private final Activity context;
+    private final ArrayList<String> queryNames;
+    private final ArrayList<String> queryDescs;
 
 
-    public NameDescArrayAdapter(Activity context, ArrayList<String> queryNames,ArrayList<String> queryDescs){
+    public NameDescArrayAdapter(Activity context, ArrayList<String> queryNames, ArrayList<String> queryDescs) {
         super(context, R.layout.namedesc, queryNames);
         this.context = context;
         this.queryNames = queryNames;
         this.queryDescs = queryDescs;
     }
 
-    public View getView(int pos, View view, ViewGroup parent){
+    public View getView(int pos, View view, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
-        View rowView = inflater.inflate(R.layout.namedesc,null,true);
+        View rowView = inflater.inflate(R.layout.namedesc, null, true);
         TextView NameText = rowView.findViewById(R.id.NameText);
         TextView DescText = rowView.findViewById(R.id.DescText);
         NameText.setText(queryNames.get(pos));

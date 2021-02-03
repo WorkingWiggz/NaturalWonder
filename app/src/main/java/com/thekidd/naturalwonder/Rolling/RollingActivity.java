@@ -31,11 +31,11 @@ public class RollingActivity extends RolingBaseNW {
                 BackToMenu();
             }
         });
-        
+
     }
 
     private void BackToMenu() {
-        Intent i = new Intent(this,MainActivity.class);
+        Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
 }

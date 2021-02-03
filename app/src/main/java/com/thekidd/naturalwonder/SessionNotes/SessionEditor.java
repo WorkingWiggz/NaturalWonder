@@ -1,13 +1,9 @@
 package com.thekidd.naturalwonder.SessionNotes;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -15,11 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.thekidd.naturalwonder.BaseNWActivity;
-import com.thekidd.naturalwonder.MainActivity;
 import com.thekidd.naturalwonder.R;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -27,7 +21,7 @@ import java.util.Calendar;
 
 public class SessionEditor extends BaseNWActivity {
 
-    TextView BackButt,SaveButt;
+    TextView BackButt, SaveButt;
     Boolean Saved = false;
     EditText TitleText, MainBodyText;
     File LoadedFile = null;
@@ -47,12 +41,12 @@ public class SessionEditor extends BaseNWActivity {
         MainBodyText = findViewById(R.id.MainMulti);
         final String BaseTitle = TitleText.getText().toString();
         final String BaseMain = MainBodyText.getText().toString();
-        if((getIntent().getStringExtra("Title") != null && getIntent().getStringExtra("Text")!= null )){
-            String titlehold=getIntent().getStringExtra("Title");
+        if ((getIntent().getStringExtra("Title") != null && getIntent().getStringExtra("Text") != null)) {
+            String titlehold = getIntent().getStringExtra("Title");
             String Texthold = getIntent().getStringExtra("Text");
             TitleText.setText(titlehold);
             MainBodyText.setText(Texthold);
-            if(getIntent().getStringExtra("FilePath") != null) {
+            if (getIntent().getStringExtra("FilePath") != null) {
                 LoadedFile = new File(getIntent().getStringExtra("FilePath"));
             }
             Loaded = true;
@@ -81,10 +75,12 @@ public class SessionEditor extends BaseNWActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 Saved = false;
             }
+
             @Override
             public void afterTextChanged(Editable s) {
 
@@ -114,10 +110,10 @@ public class SessionEditor extends BaseNWActivity {
 
     public void BackToEditor() throws IOException {
         final Intent i = new Intent(this, NotesActivity.class);
-        if(Saved){
+        if (Saved) {
             startActivity(i);
         } else {
-           NotSavedDialog(i);
+            NotSavedDialog(i);
         }
     }
 
@@ -125,7 +121,7 @@ public class SessionEditor extends BaseNWActivity {
         final boolean[] hold = {false};
 
         final int color;
-        if(ThemeMode){
+        if (ThemeMode) {
             color = R.color.LightMode_Back;
         } else {
             color = R.color.DarkMode_Back;
@@ -161,46 +157,46 @@ public class SessionEditor extends BaseNWActivity {
         boolean b = MainBodyText.getText().toString().isEmpty();
 
 
-       if (Loaded) {
-         if(LoadedFile.exists()){
-             FileWriter fw = new FileWriter(LoadedFile);
-             fw.write(MainBodyText.getText().toString());
-             fw.flush();
-             fw.close();
-         }
+        if (Loaded) {
+            if (LoadedFile.exists()) {
+                FileWriter fw = new FileWriter(LoadedFile);
+                fw.write(MainBodyText.getText().toString());
+                fw.flush();
+                fw.close();
+            }
         } else {
-           if (!a && !b) { //If title and main body are not empty.
-               try {
-                   File sdcard = getApplicationContext().getExternalFilesDir(null);
-                   File dir = new File(sdcard + "/NaturalWonder/SessionNotes/");
+            if (!a && !b) { //If title and main body are not empty.
+                try {
+                    File sdcard = getApplicationContext().getExternalFilesDir(null);
+                    File dir = new File(sdcard + "/NaturalWonder/SessionNotes/");
 
-                   if (!dir.exists()) {
-                       dir.mkdirs();
-                   }
+                    if (!dir.exists()) {
+                        dir.mkdirs();
+                    }
 
-                   Calendar calendar = Calendar.getInstance();
-                   SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                   String date = dateFormat.format(calendar.getTime());
-                   String title = TitleText.getText().toString();
-                   String core = title + "_" + date;
-                   String name = core + ".txt";
-                   File f = new File(dir,name);
-                   if (!f.exists()) {
-                       f.createNewFile();
-                       FileWriter fw = new FileWriter(f);
-                       fw.write(MainBodyText.getText().toString());
-                       fw.flush();
-                       fw.close();
-                   }
+                    Calendar calendar = Calendar.getInstance();
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                    String date = dateFormat.format(calendar.getTime());
+                    String title = TitleText.getText().toString();
+                    String core = title + "_" + date;
+                    String name = core + ".txt";
+                    File f = new File(dir, name);
+                    if (!f.exists()) {
+                        f.createNewFile();
+                        FileWriter fw = new FileWriter(f);
+                        fw.write(MainBodyText.getText().toString());
+                        fw.flush();
+                        fw.close();
+                    }
 
-               } catch (Exception e) {
-                   e.printStackTrace();
-                   ErrorHandle(e,this);
-               }
-           }
-       }
-       Saved = true;
-       BackToEditor();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    ErrorHandle(e, this);
+                }
+            }
+        }
+        Saved = true;
+        BackToEditor();
     }
 
 }

@@ -19,12 +19,14 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class SessionListAdapter extends ArrayAdapter {
 
-    private ArrayList<File> Dirs;
-    private Activity context;
-    private ArrayList<String> Titles,Blurbs,Dates;
+    private final ArrayList<File> Dirs;
+    private final Activity context;
+    private final ArrayList<String> Titles;
+    private final ArrayList<String> Blurbs;
+    private final ArrayList<String> Dates;
 
-    public SessionListAdapter(Activity context, ArrayList<String> queryTitles, ArrayList<String> queryBlurbs, ArrayList<String> queryDates, ArrayList<File> Dirs){
-        super(context, R.layout.session_rows , queryTitles);
+    public SessionListAdapter(Activity context, ArrayList<String> queryTitles, ArrayList<String> queryBlurbs, ArrayList<String> queryDates, ArrayList<File> Dirs) {
+        super(context, R.layout.session_rows, queryTitles);
         this.context = context;
         this.Titles = queryTitles;
         this.Blurbs = queryBlurbs;
@@ -33,9 +35,9 @@ public class SessionListAdapter extends ArrayAdapter {
     }
 
 
-    public View getView(final int pos, final View view, ViewGroup parent){
+    public View getView(final int pos, final View view, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
-        final View rowView = inflater.inflate(R.layout.session_rows,null,true);
+        final View rowView = inflater.inflate(R.layout.session_rows, null, true);
         TextView Title = rowView.findViewById(R.id.TitleText);
         TextView Blurb = rowView.findViewById(R.id.BlurbText);
         TextView Date = rowView.findViewById(R.id.DateText);
@@ -44,7 +46,7 @@ public class SessionListAdapter extends ArrayAdapter {
         Blurb.setText(Blurbs.get(pos));
         Date.setText(Dates.get(pos));
         final int color;
-        if(R.style.MainAppTheme_Light == getContext().getSharedPreferences("NWSharedPrefs",MODE_PRIVATE).getInt("theme",R.style.MainAppTheme_Light)){
+        if (R.style.MainAppTheme_Light == getContext().getSharedPreferences("NWSharedPrefs", MODE_PRIVATE).getInt("theme", R.style.MainAppTheme_Light)) {
             color = R.color.LightMode_Back;
         } else {
             color = R.color.DarkMode_Back;
@@ -58,8 +60,8 @@ public class SessionListAdapter extends ArrayAdapter {
                 SaveDiagB.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                            DeleteFile(Dirs.get(pos),pos);
-                            notifyDataSetChanged();
+                        DeleteFile(Dirs.get(pos), pos);
+                        notifyDataSetChanged();
                     }
                 });
                 SaveDiagB.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -77,7 +79,7 @@ public class SessionListAdapter extends ArrayAdapter {
         return rowView;
     }
 
-    private void DeleteFile(File f,int pos) {
+    private void DeleteFile(File f, int pos) {
         boolean deleted = f.delete();
         Titles.remove(pos);
         Blurbs.remove(pos);

@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_percent="0.12" />
 
     <TextView
         android:id="@+id/CharacterName"
@@ -26,29 +26,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/LVLText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:text="(Level)"
-        android:textColor="?attr/TextColor"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline54"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/ClassText"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline53"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_percent="0.88" />
 
     <Button
         android:id="@+id/BackButt"
@@ -67,15 +50,18 @@
 
     <TextView
         android:id="@+id/ClassText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="(Class)"
         android:textColor="?attr/TextColor"
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline54"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/RaceText"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -83,6 +69,8 @@
         android:id="@+id/nestedScrollView3"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@+id/guideline53"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,13 +85,16 @@
 
             <TextView
                 android:id="@+id/textView58"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:text="Attributes"
+                android:textAlignment="center"
                 android:textColor="?attr/TextColor"
                 android:textSize="36sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
@@ -131,7 +122,7 @@
                         android:gravity="center"
                         android:text="Stat"
                         android:textColor="?attr/TextColor"
-                        android:textSize="24sp"
+                        android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constrainedHeight="false"
                         app:layout_constrainedWidth="false" />
@@ -143,7 +134,7 @@
                         android:gravity="center"
                         android:text=" Score "
                         android:textColor="?attr/TextColor"
-                        android:textSize="24sp"
+                        android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constrainedHeight="false"
                         app:layout_constrainedWidth="false" />
@@ -155,7 +146,7 @@
                         android:gravity="center"
                         android:text=" Bonus "
                         android:textColor="?attr/TextColor"
-                        android:textSize="24sp"
+                        android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constrainedHeight="true"
                         app:layout_constrainedWidth="false" />
@@ -168,7 +159,7 @@
                         android:gravity="center"
                         android:text=" Save Bonus"
                         android:textColor="?attr/TextColor"
-                        android:textSize="24sp"
+                        android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constrainedHeight="false"
                         app:layout_constrainedWidth="false" />
@@ -184,7 +175,7 @@
 
                     <TextView
                         android:id="@+id/textView59"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="Strength"
@@ -230,7 +221,7 @@
 
                     <TextView
                         android:id="@+id/textView61"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="Dexterity"
@@ -276,7 +267,7 @@
 
                     <TextView
                         android:id="@+id/textView62"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="Constitution"
@@ -322,7 +313,7 @@
 
                     <TextView
                         android:id="@+id/textView63"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="Intelligence"
@@ -369,7 +360,7 @@
 
                     <TextView
                         android:id="@+id/textView65"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="Charisma"
@@ -417,7 +408,7 @@
 
                     <TextView
                         android:id="@+id/textView64"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="Wisdom"
@@ -463,7 +454,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -605,6 +596,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="Skills"
+                android:textAlignment="center"
                 android:textColor="?attr/TextColor"
                 android:textSize="36sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -613,42 +605,42 @@
 
             <TableLayout
                 android:id="@+id/AllSkills"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView107">
 
                 <TableRow
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent">
 
 
                     <TableLayout
                         android:id="@+id/StrengthSkills"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent">
 
                         <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
                             <TextView
                                 android:id="@+id/textView128"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Strength "
+                                android:text="Strength"
                                 android:textColor="?attr/TextColor"
-                                android:textSize="30sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold" />
 
                         </TableRow>
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent">
 
                             <TextView
@@ -657,18 +649,18 @@
                                 android:layout_height="wrap_content"
                                 android:text="Athletics"
                                 android:textColor="?attr/TextColor"
-                                android:textSize="18sp" />
+                                android:textSize="14sp" />
                         </TableRow>
 
                     </TableLayout>
 
                     <TableLayout
                         android:id="@+id/DexteritySkills"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent">
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent">
 
                             <TextView
@@ -677,12 +669,12 @@
                                 android:layout_height="wrap_content"
                                 android:text="Dexterity"
                                 android:textColor="?attr/TextColor"
-                                android:textSize="30sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold" />
                         </TableRow>
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent">
 
                             <TextView
@@ -691,11 +683,11 @@
                                 android:layout_height="wrap_content"
                                 android:text="Acrobatics"
                                 android:textColor="?attr/TextColor"
-                                android:textSize="18sp" />
+                                android:textSize="14sp" />
                         </TableRow>
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent">
 
                             <TextView
@@ -704,11 +696,11 @@
                                 android:layout_height="wrap_content"
                                 android:text="Sleight of Hand"
                                 android:textColor="?attr/TextColor"
-                                android:textSize="18sp" />
+                                android:textSize="14sp" />
                         </TableRow>
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent">
 
                             <TextView
@@ -717,16 +709,10 @@
                                 android:layout_height="wrap_content"
                                 android:text="Stealth"
                                 android:textColor="?attr/TextColor"
-                                android:textSize="18sp" />
+                                android:textSize="14sp" />
                         </TableRow>
 
                     </TableLayout>
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
 
                     <TableLayout
                         android:id="@+id/WisdomSkills"
@@ -734,7 +720,7 @@
                         android:layout_height="wrap_content">
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent">
 
                             <TextView
@@ -743,26 +729,26 @@
                                 android:layout_height="wrap_content"
                                 android:text="Wisdom"
                                 android:textColor="?attr/TextColor"
-                                android:textSize="30sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold" />
                         </TableRow>
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent">
 
                             <TextView
                                 android:id="@+id/AnHaText"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:text="Animal Handling"
                                 android:textColor="?attr/TextColor"
-                                android:textSize="18sp" />
+                                android:textSize="14sp" />
 
                         </TableRow>
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent">
 
                             <TextView
@@ -771,11 +757,11 @@
                                 android:layout_height="wrap_content"
                                 android:text="Insight"
                                 android:textColor="?attr/TextColor"
-                                android:textSize="18sp" />
+                                android:textSize="14sp" />
                         </TableRow>
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent">
 
                             <TextView
@@ -784,11 +770,11 @@
                                 android:layout_height="wrap_content"
                                 android:text="Medicine"
                                 android:textColor="?attr/TextColor"
-                                android:textSize="18sp" />
+                                android:textSize="14sp" />
                         </TableRow>
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent">
 
                             <TextView
@@ -797,11 +783,11 @@
                                 android:layout_height="wrap_content"
                                 android:text="Perception"
                                 android:textColor="?attr/TextColor"
-                                android:textSize="18sp" />
+                                android:textSize="14sp" />
                         </TableRow>
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent">
 
                             <TextView
@@ -810,9 +796,15 @@
                                 android:layout_height="wrap_content"
                                 android:text="Survival"
                                 android:textColor="?attr/TextColor"
-                                android:textSize="18sp" />
+                                android:textSize="14sp" />
                         </TableRow>
+
                     </TableLayout>
+
+
+                </TableRow>
+
+                <TableRow android:layout_width="wrap_content">
 
                     <TableLayout
                         android:id="@+id/CharismaSkills"
@@ -820,7 +812,7 @@
                         android:layout_height="wrap_content">
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent">
 
                             <TextView
@@ -829,12 +821,12 @@
                                 android:layout_height="wrap_content"
                                 android:text="Charisma"
                                 android:textColor="?attr/TextColor"
-                                android:textSize="30sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold" />
                         </TableRow>
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent">
 
                             <TextView
@@ -843,11 +835,11 @@
                                 android:layout_height="wrap_content"
                                 android:text="Deception"
                                 android:textColor="?attr/TextColor"
-                                android:textSize="18sp" />
+                                android:textSize="14sp" />
                         </TableRow>
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent">
 
                             <TextView
@@ -856,11 +848,11 @@
                                 android:layout_height="wrap_content"
                                 android:text="Intimdation"
                                 android:textColor="?attr/TextColor"
-                                android:textSize="18sp" />
+                                android:textSize="14sp" />
                         </TableRow>
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent">
 
                             <TextView
@@ -869,11 +861,11 @@
                                 android:layout_height="wrap_content"
                                 android:text="Performance"
                                 android:textColor="?attr/TextColor"
-                                android:textSize="18sp" />
+                                android:textSize="14sp" />
                         </TableRow>
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent">
 
                             <TextView
@@ -882,13 +874,9 @@
                                 android:layout_height="wrap_content"
                                 android:text="Persuasion"
                                 android:textColor="?attr/TextColor"
-                                android:textSize="18sp" />
+                                android:textSize="14sp" />
                         </TableRow>
                     </TableLayout>
-
-                </TableRow>
-
-                <TableRow>
 
                     <TableLayout
                         android:id="@+id/IntelligenceSkills"
@@ -896,7 +884,7 @@
                         android:layout_height="wrap_content">
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent">
 
                             <TextView
@@ -905,12 +893,12 @@
                                 android:layout_height="wrap_content"
                                 android:text="Intelligence"
                                 android:textColor="?attr/TextColor"
-                                android:textSize="30sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold" />
                         </TableRow>
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent">
 
                             <TextView
@@ -919,11 +907,11 @@
                                 android:layout_height="wrap_content"
                                 android:text="Arcana"
                                 android:textColor="?attr/TextColor"
-                                android:textSize="18sp" />
+                                android:textSize="14sp" />
                         </TableRow>
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent">
 
                             <TextView
@@ -932,11 +920,11 @@
                                 android:layout_height="wrap_content"
                                 android:text="History"
                                 android:textColor="?attr/TextColor"
-                                android:textSize="18sp" />
+                                android:textSize="14sp" />
                         </TableRow>
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent">
 
                             <TextView
@@ -945,11 +933,11 @@
                                 android:layout_height="wrap_content"
                                 android:text="Investigation"
                                 android:textColor="?attr/TextColor"
-                                android:textSize="18sp" />
+                                android:textSize="14sp" />
                         </TableRow>
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent">
 
                             <TextView
@@ -958,11 +946,11 @@
                                 android:layout_height="wrap_content"
                                 android:text="Nature"
                                 android:textColor="?attr/TextColor"
-                                android:textSize="18sp" />
+                                android:textSize="14sp" />
                         </TableRow>
 
                         <TableRow
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent">
 
                             <TextView
@@ -971,7 +959,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="Religion"
                                 android:textColor="?attr/TextColor"
-                                android:textSize="18sp" />
+                                android:textSize="14sp" />
 
                         </TableRow>
 
@@ -989,11 +977,12 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="Weapons"
+                android:textAlignment="center"
                 android:textColor="?attr/TextColor"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/AllSkills" />
+                app:layout_constraintTop_toBottomOf="@+id/FeatsText" />
 
             <TextView
                 android:id="@+id/textView153"
@@ -1009,15 +998,17 @@
 
             <TextView
                 android:id="@+id/textView154"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:text="Character Info"
                 android:textColor="?attr/TextColor"
                 android:textSize="36sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/SpellMagicList" />
+                app:layout_constraintTop_toBottomOf="@+id/SpellSlotsText" />
 
             <com.thekidd.naturalwonder.LookUp.MyListView
                 android:id="@+id/SpellMagicList"
@@ -1031,26 +1022,88 @@
                 app:layout_constraintTop_toBottomOf="@+id/SAText" />
 
             <TextView
-                android:id="@+id/textView49"
-                android:layout_width="wrap_content"
+                android:id="@+id/SpellsTextLBL"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="Equipment"
+                android:layout_marginEnd="16dp"
+                android:text="Known Spells"
+                android:textColor="?attr/TextColor"
+                android:textSize="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/SpellMagicList" />
+
+
+            <TextView
+                android:id="@+id/SpellsText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="?attr/TextColor"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/SpellsTextLBL" />
+
+
+            <TextView
+                android:id="@+id/SpellSlotsTextLBL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Spell Slots"
                 android:textColor="?attr/TextColor"
                 android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/SpellsText" />
+
+            <TextView
+                android:id="@+id/SpellSlotsText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="(SpellSlots)"
+                android:textColor="?attr/TextColor"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/SpellSlotsTextLBL" />
+
+
+            <TextView
+                android:id="@+id/textView49"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Equipment"
+                android:textColor="?attr/TextColor"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView154" />
 
             <TextView
                 android:id="@+id/EquipText"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:text="(Equip)"
                 android:textColor="?attr/TextColor"
-                android:textSize="24sp"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView49" />
 
@@ -1210,7 +1263,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Money"
                 android:textColor="?attr/TextColor"
-                android:textSize="30sp"
+                android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/EquipText" />
 
@@ -1222,7 +1275,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Alignment"
                 android:textColor="?attr/TextColor"
-                android:textSize="30sp"
+                android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/CopperPieces" />
 
@@ -1232,11 +1285,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
                 android:text="(Alignment)"
                 android:textColor="?attr/TextColor"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView67" />
 
@@ -1319,10 +1370,10 @@
                 android:gravity="center_horizontal"
                 android:text="(SpellA)"
                 android:textColor="?attr/TextColor"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="@id/textView163"
                 app:layout_constraintStart_toStartOf="@id/textView163"
-                app:layout_constraintTop_toBottomOf="@+id/textView162"
-                android:textSize="18sp" />
+                app:layout_constraintTop_toBottomOf="@+id/textView162" />
 
             <TableLayout
                 android:id="@+id/WeaponsTable"
@@ -1381,7 +1432,7 @@
                 android:layout_weight="1"
                 android:text="Strength "
                 android:textColor="?attr/TextColor"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView152" />
@@ -1419,7 +1470,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Proficiency "
                 android:textColor="?attr/TextColor"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/textView156"
                 app:layout_constraintTop_toBottomOf="@+id/textView152" />
@@ -1428,15 +1479,465 @@
                 android:id="@+id/SpecialAttTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_weight="1"
                 android:text="(Special Title)"
                 android:textColor="?attr/TextColor"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView155"
                 app:layout_constraintTop_toBottomOf="@+id/textView152" />
+
+            <TextView
+                android:id="@+id/textView125"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Character Background"
+                android:textSize="36sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/AlignmentText" />
+
+            <TextView
+                android:id="@+id/textView138"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Faith"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView125" />
+
+            <EditText
+                android:id="@+id/editTextFaith"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView138" />
+
+            <TextView
+                android:id="@+id/LifeStyleLBL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="LifeStyle"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextFaith" />
+
+            <TextView
+                android:id="@+id/LifestyleText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="(LifeStyle)"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/LifeStyleLBL" />
+
+
+            <TextView
+                android:id="@+id/PhysicalCharLBL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Physical Characteristics"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/LifestyleText" />
+
+            <TextView
+                android:id="@+id/HairLBL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Hair"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/PhysicalCharLBL" />
+
+
+            <EditText
+                android:id="@+id/editTextHair"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/HairLBL" />
+
+            <TextView
+                android:id="@+id/SkinLBL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Skin"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextHair" />
+
+
+            <EditText
+                android:id="@+id/editTextSkin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/SkinLBL" />
+
+            <TextView
+                android:id="@+id/EyesLBL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Eyes"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextSkin" />
+
+
+            <EditText
+                android:id="@+id/editTextEyes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/EyesLBL" />
+
+            <TextView
+                android:id="@+id/HeightLBL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Height"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextEyes" />
+
+
+            <EditText
+                android:id="@+id/editTextHeight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/HeightLBL" />
+
+            <TextView
+                android:id="@+id/WeightLBL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Weight"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextHeight" />
+
+
+            <EditText
+                android:id="@+id/editTextWeight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WeightLBL" />
+
+            <TextView
+                android:id="@+id/AgeLBL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Age"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextWeight" />
+
+
+            <EditText
+                android:id="@+id/editTextAge"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/AgeLBL" />
+
+            <TextView
+                android:id="@+id/GenderLBL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Gender"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextAge" />
+
+
+            <EditText
+                android:id="@+id/editTextGender"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/GenderLBL" />
+
+            <TextView
+                android:id="@+id/OrgLBL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Organizations"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView140" />
+
+
+            <EditText
+                android:id="@+id/editTextOrg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/OrgLBL" />
+
+            <TextView
+                android:id="@+id/AlliesLBL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Allies"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextOrg" />
+
+
+            <EditText
+                android:id="@+id/editTextAllies"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/AlliesLBL" />
+
+            <TextView
+                android:id="@+id/EnemiesLBL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Enemies"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextAllies" />
+
+
+            <EditText
+                android:id="@+id/editTextEnemies"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/EnemiesLBL" />
+
+            <TextView
+                android:id="@+id/BackstoryLBL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Backstory"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextEnemies" />
+
+
+            <EditText
+                android:id="@+id/editTextBackstory"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/BackstoryLBL" />
+
+            <TextView
+                android:id="@+id/OtherLBL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Other"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextBackstory" />
+
+
+            <EditText
+                android:id="@+id/editTextOther"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/OtherLBL" />
+
+            <TextView
+                android:id="@+id/textView140"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Other"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextGender" />
+
+            <TextView
+                android:id="@+id/textView131"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Character Feats"
+                android:textAlignment="center"
+                android:textSize="36sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/AllSkills" />
+
+            <TextView
+                android:id="@+id/FeatsText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="(Feat)"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView131" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -1447,7 +1948,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:fabBackgroundTint="?attr/buttonimageback"
         app:fabDrawableTint="?attr/buttonimagetint"
         app:fabGravity="bottom_end"

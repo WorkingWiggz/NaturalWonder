@@ -1,8 +1,6 @@
 package com.thekidd.naturalwonder.LookUp.ItemActivities;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -12,12 +10,9 @@ import com.thekidd.naturalwonder.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 public class AbilityScores extends BasicItemActivity {
-    TextView ShortName,FullName,DescText,SkillsTitle;
+    TextView ShortName, FullName, DescText, SkillsTitle;
     Button BackButt;
     ListView Skills;
     CustomListAdapter ToListAdapter;
@@ -33,41 +28,22 @@ public class AbilityScores extends BasicItemActivity {
         BackButt = findViewById(R.id.BackButt);
         Button MenuButt = findViewById(R.id.MenuButt);
         MenuButtonHandle(MenuButt);
-        Skills =  findViewById(R.id.SkillsList);
-
-
-        Thread t = new Thread() {
-            @Override
-            public void run() {
-                while (true){
-                    if(ItemData != null){
-                        try {
-                            SortDataToItems();
-                        } catch (JSONException e) {
-                            ErrorHandle(e,getApplicationContext());
-                        }
-                        break;
-                    }
-                }
-            }
-        };
-        t.start();
+        Skills = findViewById(R.id.SkillsList);
         BackButt = findViewById(R.id.BackButt);
         SortBackButt(BackButt);
+    }
 
-        }
-
-    private void SortDataToItems() throws JSONException {
+    protected void SortDataToItems() throws JSONException {
         ShortName.setText(ItemData.getString("name"));
         FullName.setText(ItemData.getString("full_name"));
         JSONArray desc = ItemData.getJSONArray("desc");
-        String b="";
-        String NL =System.getProperty("line.separator");
-        for(int i = 0;i<desc.length();i++){
+        String b = "";
+        String NL = System.getProperty("line.separator");
+        for (int i = 0; i < desc.length(); i++) {
             String a = desc.getString(i);
-            if(i>0){
-                b = b+NL+NL+a;
-            }else {
+            if (i > 0) {
+                b = b + NL + NL + a;
+            } else {
                 b = a;
             }
         }
@@ -75,19 +51,50 @@ public class AbilityScores extends BasicItemActivity {
         String c = "Related skills:";
         SkillsTitle.setText(c);
         final JSONArray skills = ItemData.getJSONArray("skills");
-        final ArrayList<String> SkillName = new ArrayList<String>();
-        for(int i =0;i<skills.length();i++){
-            JSONObject a =skills.getJSONObject(i);
-            SkillName.add(a.getString("name"));
-        }
-        ToListAdapter = new CustomListAdapter(this,SkillName);
-        Skills.setAdapter(ToListAdapter);
-        Skills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                OnClickHandleList(skills,position);
-            }
-        });
+        PopulateLists(Skills, skills);
+    }
 
+
+    @Override
+    protected void StartAssocaiedFunction(int pos) {
+
+    }
+
+    @Override
+    protected void PreloadData() {
+
+    }
+
+    @Override
+    protected void AssignDataThreadFactory() {
+        AssignDataThread = new Thread() {
+            @Override
+            public void run() {
+                synchronized (LoadDataThread) {
+                    while (!LoadedData) {
+                        if (ItemData != null) {
+                            try {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        try {
+                                            SortDataToItems();
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                            ErrorHandle(e, getApplicationContext());
+                                        }
+                                    }
+                                });
+                            } catch (Exception e) {
+                                ErrorHandle(e, getApplicationContext());
+                            }
+                            break;
+                        }
+
+                    }
+                }
+            }
+        };
+        AssignDataThread.start();
     }
 }

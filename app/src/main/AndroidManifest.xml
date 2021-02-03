@@ -15,7 +15,15 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/MainAppTheme.Light">
-        <activity android:name=".LookUp.ItemActivities.RuleSections"></activity>
+        <activity android:name=".Settings.SettingsHelp"></activity>
+        <activity android:name=".Settings.DeveloperHelp" />
+        <activity android:name=".Settings.CharacterSheetsHelp" />
+        <activity android:name=".Settings.SessionNotesHelp" />
+        <activity android:name=".Settings.RollingDiceHelp" />
+        <activity android:name=".Settings.LookUpHelp" />
+        <activity android:name=".LookUp.ItemActivities.MagicItems" />
+        <activity android:name=".LookUp.ItemActivities.Levels" />
+        <activity android:name=".LookUp.ItemActivities.RuleSections" />
         <activity android:name=".LookUp.ItemActivities.Rules" />
 
         <meta-data

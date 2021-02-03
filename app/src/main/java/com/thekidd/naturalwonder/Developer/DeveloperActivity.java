@@ -1,10 +1,8 @@
 package com.thekidd.naturalwonder.Developer;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
@@ -15,9 +13,12 @@ import com.thekidd.naturalwonder.MainActivity;
 import com.thekidd.naturalwonder.R;
 
 public class DeveloperActivity extends BaseNWActivity {
-    TextView BrandLink,VersionText;
+    TextView BrandLink, VersionText;
     String VersionNumber;
-    Button MenuButt,SendFeedbackButt;
+    Button MenuButt, SendFeedbackButt, VisitMEButt, ShareButt, DonateButt;
+    String DonateLink = "https://workingwiggz.com/supporting-me/";
+    String VisitLink = "https://workingwiggz.com/";
+    ShareQuotes SQ = new ShareQuotes();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,13 @@ public class DeveloperActivity extends BaseNWActivity {
         MenuButt = findViewById(R.id.MenuButt);
         VersionText = findViewById(R.id.VersionNum);
         SendFeedbackButt = findViewById(R.id.SendFeedBackButt);
-        VersionNumber = "0.2";
+        VisitMEButt = findViewById(R.id.VisitMEButt);
+        ShareButt = findViewById(R.id.ShareButt);
+        DonateButt = findViewById(R.id.DonateButt);
+        VisitButtSort();
+        ShareButtSort();
+        DonateButtSort();
+        VersionNumber = "0.3";
         VersionText.setText(VersionNumber);
         final Intent MenuBack = new Intent(this, MainActivity.class);
 
@@ -40,7 +47,7 @@ public class DeveloperActivity extends BaseNWActivity {
         });
 
 
-        if(SendFeedbackButt != null){
+        if (SendFeedbackButt != null) {
             SendFeedbackButt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -48,5 +55,43 @@ public class DeveloperActivity extends BaseNWActivity {
                 }
             });
         }
+    }
+
+    private void DonateButtSort() {
+        DonateButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uriUrl = Uri.parse(DonateLink);
+                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+                startActivity(launchBrowser);
+            }
+        });
+    }
+
+    private void ShareButtSort() {
+        ShareButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String ShareQuote = SQ.GetRandomQuote();
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, ShareQuote);
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+            }
+        });
+    }
+
+
+    private void VisitButtSort() {
+        VisitMEButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uriUrl = Uri.parse(VisitLink);
+                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+                startActivity(launchBrowser);
+            }
+        });
+
     }
 }

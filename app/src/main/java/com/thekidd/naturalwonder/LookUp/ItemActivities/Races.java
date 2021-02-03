@@ -1,22 +1,20 @@
 package com.thekidd.naturalwonder.LookUp.ItemActivities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.thekidd.naturalwonder.MainActivity;
 import com.thekidd.naturalwonder.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Races extends BasicItemActivity {
 
-    TextView NameText,SpeedText,AlignText,AgeText,sizeText,SizeDescText, TypeText,LangDescText;
-    ListView AbBoList,StartProList,LangList,TraitsList, TraitOptList,SubRacesList;
+    TextView NameText, SpeedText, AlignText, AgeText, sizeText, SizeDescText, TypeText, LangDescText;
+    ListView AbBoList, StartProList, LangList, TraitsList, TraitOptList, SubRacesList;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +34,12 @@ public class Races extends BasicItemActivity {
         TraitsList = findViewById(R.id.TraitsList);
         TraitOptList = findViewById(R.id.TraitOptList);
         SubRacesList = findViewById(R.id.SubRacesList);
+        BackButt = findViewById(R.id.BackButt);
+        SortBackButt(BackButt);
+    }
 
+    @Override
+    protected void SortDataToItems() throws JSONException {
         try {
             String a = ItemData.getString("name");
             String b = ItemData.getString("speed");
@@ -48,14 +51,23 @@ public class Races extends BasicItemActivity {
             JSONArray i = ItemData.getJSONArray("starting_proficiencies");
             JSONArray j = ItemData.getJSONArray("languages");
             JSONArray k = ItemData.getJSONArray("traits");
-            if(ItemData.has("trait_options")){
+            if (!ItemData.isNull("trait_options")) {
                 JSONArray l = ItemData.getJSONObject("trait_options").getJSONArray("from");
-                PopulateLists(TraitOptList,l);
+                PopulateLists(TraitOptList, l);
             }
 
             JSONArray m = ItemData.getJSONArray("subraces");
             JSONArray n = ItemData.getJSONArray("ability_bonuses");
 
+            JSONArray abs = new JSONArray();
+            for (int xx = 0; xx < n.length(); xx++) {
+                String name = n.getJSONObject(xx).getJSONObject("ability_score").getString("name") + ": " + n.getJSONObject(xx).getString("bonus");
+                String url = n.getJSONObject(xx).getJSONObject("ability_score").getString("url");
+                JSONObject JO = new JSONObject();
+                JO.put("name", name);
+                JO.put("url", url);
+                abs.put(JO);
+            }
 
 
             NameText.setText(a);
@@ -65,22 +77,65 @@ public class Races extends BasicItemActivity {
             sizeText.setText(e);
             SizeDescText.setText(f);
             LangDescText.setText(g);
-            PopulateLists(AbBoList,n);
-            PopulateLists(StartProList,i);
-            PopulateLists(LangList,j);
-            PopulateLists(TraitsList,k);
+            PopulateLists(AbBoList, abs);
+            PopulateLists(StartProList, i);
+            PopulateLists(LangList, j);
+            PopulateLists(TraitsList, k);
 
-            PopulateLists(SubRacesList,m);
-
+            PopulateLists(SubRacesList, m);
 
 
         } catch (JSONException ex) {
             ex.printStackTrace();
-            ErrorHandle(ex,this);
+            ErrorHandle(ex, this);
         }
+    }
 
+    @Override
+    protected void LoadFetchedDatatoViews() {
 
-        BackButt = findViewById(R.id.BackButt);
-        SortBackButt(BackButt);
+    }
+
+    @Override
+    protected void StartAssocaiedFunction(int pos) {
+
+    }
+
+    @Override
+    protected void PreloadData() {
+
+    }
+
+    @Override
+    protected void AssignDataThreadFactory() {
+        AssignDataThread = new Thread() {
+            @Override
+            public void run() {
+                synchronized (LoadDataThread) {
+                    while (!LoadedData) {
+                        if (ItemData != null) {
+                            try {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        try {
+                                            SortDataToItems();
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                            ErrorHandle(e, getApplicationContext());
+                                        }
+                                    }
+                                });
+                            } catch (Exception e) {
+                                ErrorHandle(e, getApplicationContext());
+                            }
+                            break;
+                        }
+
+                    }
+                }
+            }
+        };
+        AssignDataThread.start();
     }
 }

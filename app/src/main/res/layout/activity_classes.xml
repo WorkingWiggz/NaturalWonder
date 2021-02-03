@@ -1,7 +1,5 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,11 +8,12 @@
         android:id="@+id/classText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_weight="1"
         android:text="(ClassName)"
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/TitleGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         android:layout_weight="1"
         android:text="(HitDice)"
         android:textSize="24sp"
@@ -38,11 +37,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.08" />
+        app:layout_constraintGuide_percent="0.1" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@+id/guideline23"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,15 +53,58 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/spellcastText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center"
+                android:text="(Spellcasting)"
+                android:textSize="36sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/SubclassList" />
+
+            <TextView
+                android:id="@+id/startEquipText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center"
+                android:text="(StartEquip)"
+                android:textSize="36sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/SpellCastingList" />
+
+            <Button
+                android:id="@+id/StartEquipButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Go to Starting Equipment"
+                app:layout_constraintEnd_toEndOf="@+id/startEquipText"
+                app:layout_constraintStart_toStartOf="@+id/startEquipText"
+                app:layout_constraintTop_toBottomOf="@+id/startEquipText" />
 
             <TextView
                 android:id="@+id/profChoicesText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:gravity="center"
                 android:text="(ProficChoices)"
                 android:textSize="36sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -73,35 +116,23 @@
                 android:id="@+id/ProChoices"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/profChoicesText"
+                app:layout_constraintStart_toStartOf="@+id/profChoicesText"
                 app:layout_constraintTop_toBottomOf="@+id/profChoicesText">
 
             </com.thekidd.naturalwonder.LookUp.MyListView>
-
-            <TextView
-                android:id="@+id/startEquipText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="(StartEquip)"
-                android:textSize="36sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/SubclassList" />
 
             <TextView
                 android:id="@+id/profClassText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:gravity="center"
                 android:text="(ProficienciesClass)"
                 android:textSize="36sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -114,8 +145,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:gravity="center"
                 android:text="(Subclasses)"
                 android:textSize="36sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -123,25 +155,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/SavingThrowList" />
 
             <TextView
-                android:id="@+id/spellcastText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="(Spellcasting)"
-                android:textSize="36sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/StartingEquipList" />
-
-            <TextView
                 android:id="@+id/savingThrowsText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:gravity="center"
                 android:text="(SavingThrows)"
                 android:textSize="36sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -153,57 +173,54 @@
                 android:id="@+id/ProClassList"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/profClassText"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/profClassText"
                 app:layout_constraintTop_toBottomOf="@+id/profClassText" />
 
             <com.thekidd.naturalwonder.LookUp.MyListView
                 android:id="@+id/SubclassList"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/subclassesText"
+                app:layout_constraintStart_toStartOf="@+id/subclassesText"
                 app:layout_constraintTop_toBottomOf="@+id/subclassesText" />
 
             <com.thekidd.naturalwonder.LookUp.MyListView
                 android:id="@+id/SavingThrowList"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/savingThrowsText" />
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/savingThrowsText"
+                app:layout_constraintStart_toStartOf="@+id/savingThrowsText"
+                app:layout_constraintTop_toBottomOf="@+id/savingThrowsText">
+
+            </com.thekidd.naturalwonder.LookUp.MyListView>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline73"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
 
             <com.thekidd.naturalwonder.LookUp.MyListView
-                android:id="@+id/StartingEquipList"
+                android:id="@+id/SpellCastingList"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/startEquipText" />
-
-            <com.thekidd.naturalwonder.LookUp.MyListView
-                android:id="@+id/SList"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/spellcastText"
+                app:layout_constraintStart_toStartOf="@+id/spellcastText"
                 app:layout_constraintTop_toBottomOf="@+id/spellcastText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -227,18 +244,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.84" />
+        app:layout_constraintGuide_percent="0.83" />
 
     <Button
         android:id="@+id/MenuButt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:text="Menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BackButt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

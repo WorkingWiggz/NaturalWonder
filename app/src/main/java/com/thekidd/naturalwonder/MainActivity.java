@@ -25,7 +25,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class MainActivity extends BaseNWActivity {
-    Button Settings,Lookup,Developer,Sheets,Rolling,Notes;
+    Button Settings, Lookup, Developer, Sheets, Rolling, Notes;
     RequestQueue queue;
     JSONObject hold;
 
@@ -35,7 +35,6 @@ public class MainActivity extends BaseNWActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         CheckPerms();
-        LoadBackUpData();
 
 
         queue = Volley.newRequestQueue(getApplicationContext());
@@ -47,20 +46,18 @@ public class MainActivity extends BaseNWActivity {
         Notes = findViewById(R.id.SessButt);
 
 
-
-
-        Settings.setOnClickListener(new View.OnClickListener(){
+        Settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              Intent S = new Intent (MainActivity.this, SettingsActivity.class);
-              startActivity(S);
+                Intent S = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(S);
             }
         });
 
         Lookup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent L = new Intent (MainActivity.this, LookingUpActivity.class);
+                Intent L = new Intent(MainActivity.this, LookingUpActivity.class);
                 startActivity(L);
             }
         });
@@ -68,7 +65,7 @@ public class MainActivity extends BaseNWActivity {
         Developer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent D = new Intent (MainActivity.this, DeveloperActivity.class);
+                Intent D = new Intent(MainActivity.this, DeveloperActivity.class);
                 startActivity(D);
             }
         });
@@ -76,7 +73,7 @@ public class MainActivity extends BaseNWActivity {
         Sheets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Sh = new Intent (MainActivity.this, SheetsActivity.class);
+                Intent Sh = new Intent(MainActivity.this, SheetsActivity.class);
                 startActivity(Sh);
             }
         });
@@ -84,7 +81,7 @@ public class MainActivity extends BaseNWActivity {
         Rolling.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent r = new Intent (MainActivity.this, RollingActivity.class);
+                Intent r = new Intent(MainActivity.this, RollingActivity.class);
                 startActivity(r);
             }
         });
@@ -92,33 +89,31 @@ public class MainActivity extends BaseNWActivity {
         Notes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent N = new Intent (MainActivity.this, NotesActivity.class);
+                Intent N = new Intent(MainActivity.this, NotesActivity.class);
                 startActivity(N);
             }
         });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public void CheckPerms(){
+    public void CheckPerms() {
         ArrayList<String> PermsToRequest = new ArrayList<>();
-        if(ContextCompat.checkSelfPermission(this,Manifest.permission.INTERNET) == PackageManager.PERMISSION_DENIED){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET) == PackageManager.PERMISSION_DENIED) {
             PermsToRequest.add(Manifest.permission.INTERNET);
         }
 
-        if(ContextCompat.checkSelfPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
             PermsToRequest.add(Manifest.permission.READ_EXTERNAL_STORAGE);
         }
-        if(ContextCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
             PermsToRequest.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
         }
-        if(PermsToRequest.size()>0){
+        if (PermsToRequest.size() > 0) {
             String[] a = PermsToRequest.toArray(new String[0]);
-            requestPermissions(a,2);
+            requestPermissions(a, 2);
         }
 
     }
-
-
 
 
 }

@@ -10,14 +10,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class RolingBaseNW extends AppCompatActivity {
-    int Theme;
     public Boolean ThemeMode;
+    int Theme;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        SharedPreferences a = getSharedPreferences("NWSharedPrefs",MODE_PRIVATE);
+        SharedPreferences a = getSharedPreferences("NWSharedPrefs", MODE_PRIVATE);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        Theme = a.getInt("theme",R.style.MainAppTheme_Light);
-        if(Theme == R.style.MainAppTheme_Light){
+        Theme = a.getInt("theme", R.style.MainAppTheme_Light);
+        if (Theme == R.style.MainAppTheme_Light) {
             ThemeMode = true;
         } else if (Theme == R.style.MainAppTheme_Dark) {
             ThemeMode = false;
@@ -26,9 +27,9 @@ public class RolingBaseNW extends AppCompatActivity {
         super.onCreate(savedInstanceState);
     }
 
-    public void ErrorHandle(Exception error, Context c){
-        Intent i = new Intent(c,ErrorPage.class);
-        i.putExtra("ErrorMSG",error.toString());
+    public void ErrorHandle(Exception error, Context c) {
+        Intent i = new Intent(c, ErrorPage.class);
+        i.putExtra("ErrorMSG", error.toString());
         startActivity(i);
     }
 

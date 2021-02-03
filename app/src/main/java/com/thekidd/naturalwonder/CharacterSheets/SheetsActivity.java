@@ -1,6 +1,5 @@
 package com.thekidd.naturalwonder.CharacterSheets;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -25,7 +24,7 @@ import java.util.Objects;
 
 public class SheetsActivity extends BaseNWActivity {
 
-    Button MenuButt,NewSessButt;
+    Button MenuButt, NewSessButt;
     ListView CharSheets;
     ArrayList<File> A = new ArrayList<>();
     ArrayList<String> Names = new ArrayList<>();
@@ -38,7 +37,7 @@ public class SheetsActivity extends BaseNWActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sheets);
 
-        if(ThemeMode){
+        if (ThemeMode) {
             color = R.color.LightMode_Back;
         } else {
             color = R.color.DarkMode_Back;
@@ -50,7 +49,7 @@ public class SheetsActivity extends BaseNWActivity {
 
 
         final Intent MenuBack = new Intent(this, MainActivity.class);
-        final Intent NewSheet = new Intent(this,SetupCharacter.class);
+        final Intent NewSheet = new Intent(this, SetupCharacter.class);
 
         MenuButt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +69,7 @@ public class SheetsActivity extends BaseNWActivity {
             fetchSheets();
         } catch (IOException | JSONException e) {
             e.printStackTrace();
+            ErrorHandle(e, getApplicationContext());
         }
         CharSheets.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -81,34 +81,55 @@ public class SheetsActivity extends BaseNWActivity {
     }
 
     private void LoadSheet(int position) {
-        File Dir = new File(getApplicationContext().getExternalFilesDir(null)+"/NaturalWonder/CharacterSheets/");
+        File Dir = new File(getApplicationContext().getExternalFilesDir(null) + "/NaturalWonder/CharacterSheets/");
         File file = Objects.requireNonNull(Dir.listFiles())[position];
         Intent i = new Intent(this, CharacterSheetsEditor.class);
-        i.putExtra("FilePath",file.getAbsolutePath());
+        i.putExtra("FilePath", file.getAbsolutePath());
         startActivity(i);
     }
 
     private void fetchSheets() throws IOException, JSONException {
-        File Dir = new File(getApplicationContext().getExternalFilesDir(null)+"/NaturalWonder/CharacterSheets/");
-        File[] Files = Dir.listFiles();
+        File file = new File(getExternalFilesDir(null) + "/NaturalWonder/CharacterSheets/");
+        File[] Files = file.listFiles();
+
         ArrayList<String> Names = new ArrayList<>();
         ArrayList<String> Classes = new ArrayList<>();
         ArrayList<Integer> Levels = new ArrayList<>();
         ArrayList<String> Paths = new ArrayList<>();
 
-        if(Files != null){
+        if (Files != null) {
             A.addAll(Arrays.asList(Files));
-            for(int i =0;i<A.size();i++){
+            for (int i = 0; i < A.size(); i++) {
                 File tmp = A.get(i);
-                BufferedReader br = new BufferedReader(new FileReader(tmp));
-                JSONObject c = new JSONObject(br.readLine());
-                Names.add(c.getString("Name"));
-                Classes.add(c.getString("Class"));
-                Levels.add(c.getInt("Level"));
-                Paths.add(tmp.getAbsolutePath());
+                FileReader fileReader = new FileReader(tmp);
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                if (tmp.exists()) {
+                    String a = "";
+                    a = bufferedReader.readLine();
+
+                    JSONObject c = new JSONObject(a);
+                    if (c.has("Name")) {
+                        Names.add(c.getString("Name"));
+                        int level = 0;
+                        String ClassesString = "";
+                        for (int j = 0; j < c.getJSONArray("ClassesData").length(); j++) {
+                            if (j == c.getJSONArray("ClassesData").length() - 1) {
+                                ClassesString = ClassesString + c.getJSONArray("ClassesData").getJSONObject(j).getString("name");
+                            } else {
+                                ClassesString = ClassesString + c.getJSONArray("ClassesData").getJSONObject(j).getString("name") + System.lineSeparator();
+                            }
+                            level = +c.getJSONArray("ClassesData").getJSONObject(j).getInt("level");
+
+                        }
+                        Classes.add(ClassesString);
+                        Levels.add(level);
+                        Paths.add(tmp.getAbsolutePath());
+                    }
+
+                }
             }
         }
-        CharSheetsAdapter CSA = new CharSheetsAdapter(this,Names,Levels,Classes,Paths,color);
+        CharSheetsAdapter CSA = new CharSheetsAdapter(this, Names, Levels, Classes, Paths, color);
         CharSheets.setAdapter(CSA);
     }
 }

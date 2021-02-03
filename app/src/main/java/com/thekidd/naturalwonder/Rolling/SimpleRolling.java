@@ -1,35 +1,26 @@
 package com.thekidd.naturalwonder.Rolling;
 
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-
-import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+
 import com.thekidd.naturalwonder.R;
 import com.thekidd.naturalwonder.RolingBaseNW;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Objects;
-
-import static android.content.Context.MODE_PRIVATE;
 
 
 public class SimpleRolling extends RollFragBase {
-    private ArrayList<String> DiceTypes = new ArrayList<>();
+    private final ArrayList<String> DiceTypes = new ArrayList<>();
     private AdvDiceAdapter ADA;
 
     public SimpleRolling() {
@@ -50,16 +41,16 @@ public class SimpleRolling extends RollFragBase {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View rootView = inflater.inflate(R.layout.fragment_simple_rolling,container,false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_simple_rolling, container, false);
         ListView L = rootView.findViewById(R.id.DiceList);
         TextView TotalView = rootView.findViewById(R.id.TotalText);
-        ADA = new AdvDiceAdapter(getActivity(),DiceTypes,TotalView);
+        ADA = new AdvDiceAdapter(getActivity(), DiceTypes, TotalView);
         L.setAdapter(ADA);
         Button AddDice = rootView.findViewById(R.id.AddStuffButt);
-        boolean ThemeMode = ((RolingBaseNW)getContext()).ThemeMode;
+        boolean ThemeMode = ((RolingBaseNW) getContext()).ThemeMode;
         final int color;
-        if(ThemeMode){
+        if (ThemeMode) {
             color = R.color.LightMode_Back;
         } else {
             color = R.color.DarkMode_Back;
@@ -69,11 +60,11 @@ public class SimpleRolling extends RollFragBase {
             public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
 
                 AlertDialog.Builder ConfirmDialog = new AlertDialog.Builder(getContext());
-                ConfirmDialog.setMessage(String.format("Are you sure you want to delete this dice set? (%s)",ADA.DiceRolling.get(position)));
+                ConfirmDialog.setMessage(String.format("Are you sure you want to delete this dice set? (%s)", ADA.DiceRolling.get(position)));
                 ConfirmDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        ADA.DeleteItem(position,view);
+                        ADA.DeleteItem(position, view);
                     }
                 });
                 ConfirmDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -90,7 +81,7 @@ public class SimpleRolling extends RollFragBase {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Add Dice Quantity and Dice Type");
-        final View customLayout = inflater.inflate(R.layout.customdialog,null);
+        final View customLayout = inflater.inflate(R.layout.customdialog, null);
         builder.setView(customLayout);
         builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
             @Override
@@ -99,7 +90,7 @@ public class SimpleRolling extends RollFragBase {
                 EditText DTTB = customLayout.findViewById(R.id.DTTB);
                 String a = DQTB.getText().toString();
                 String b = DTTB.getText().toString();
-                String c = a+"d"+b;
+                String c = a + "d" + b;
                 ADA.AddtoList(c);
             }
         });
@@ -117,7 +108,6 @@ public class SimpleRolling extends RollFragBase {
             @Override
             public void onClick(View v) {
                 dialog.show();
-
             }
         });
         return rootView;

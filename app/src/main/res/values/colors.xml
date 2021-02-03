@@ -8,23 +8,23 @@
     <color name="DarkMode_Text">#FFFFFF</color>
     <color name="DarkMode_Back">#182E7E</color>
     <color name="DarkMode_ButtonBack">#000000</color>
-    <color name="LightMode_Text"> #000000 </color>
+    <color name="LightMode_Text">#000000</color>
     <color name="LightMode_Back">#3FB1ED</color>
     <color name="LightMode_ButtonBack">#FFFFFF</color>
     <color name="Hint">#919191</color>
 
-    <color name="DarkModeItemText"> #000000 </color>
-    <color name="DarkModeItemTextBack"> #000000 </color>
-    <color name="DarkModeItemIconTint"> #000000 </color>
-    <color name="DarkModeItemIconBack"> #000000 </color>
-    <color name="DarkModeButtonImageTint"> #000000 </color>
-    <color name="DarkModeButtonImageBack"> #000000 </color>
+    <color name="DarkModeItemText">#000000</color>
+    <color name="DarkModeItemTextBack">#000000</color>
+    <color name="DarkModeItemIconTint">#000000</color>
+    <color name="DarkModeItemIconBack">#000000</color>
+    <color name="DarkModeButtonImageTint">#000000</color>
+    <color name="DarkModeButtonImageBack">#000000</color>
 
-    <color name="LightModeItemText"> #FFFFFF </color>
-    <color name="LightModeItemTextBack"> #FFFFFF </color>
-    <color name="LightModeItemIconTint"> #FFFFFF </color>
-    <color name="LightModeItemIconBack"> #FFFFFF </color>
-    <color name="LightModeButtonImageTint"> #FFFFFF </color>
-    <color name="LightModeButtonImageBack"> #FFFFFF </color>
+    <color name="LightModeItemText">#FFFFFF</color>
+    <color name="LightModeItemTextBack">#FFFFFF</color>
+    <color name="LightModeItemIconTint">#FFFFFF</color>
+    <color name="LightModeItemIconBack">#FFFFFF</color>
+    <color name="LightModeButtonImageTint">#FFFFFF</color>
+    <color name="LightModeButtonImageBack">#FFFFFF</color>
 
 </resources>
